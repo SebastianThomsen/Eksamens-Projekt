@@ -6,7 +6,8 @@ class User
             $_data,
             $_sessionName,
             $_cookieName,
-            $_isLoggedIn;
+            $_isLoggedIn,
+            $role;
 
     public function __construct($user = null)
     {
@@ -131,6 +132,14 @@ class User
         }
 
         return false;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }
+
+    public function role() {
+        return $this->role;
     }
 
     public function exists()

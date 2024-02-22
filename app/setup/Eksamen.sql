@@ -31,6 +31,21 @@ CREATE TABLE `administrators` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `teachers` (
+  `teacher_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `navn` varchar(50) NOT NULL,
+  `efternavn` varchar(50) NOT NULL,
+  `fødselsdag` date NOT NULL,
+  `adresse` varchar(50) NOT NULL,
+  `postnummer` int(11) NOT NULL,
+  `telefonnummer` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `fag` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `students` (
   `student_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -55,21 +70,6 @@ CREATE TABLE `schools` (
   `postnummer` int(11) NOT NULL,
   `phone_number` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `teachers` (
-  `teacher_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `navn` varchar(50) NOT NULL,
-  `efternavn` varchar(50) NOT NULL,
-  `fødselsdag` date NOT NULL,
-  `adresse` varchar(50) NOT NULL,
-  `postnummer` int(11) NOT NULL,
-  `telefonnummer` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `fag` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

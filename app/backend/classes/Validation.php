@@ -18,88 +18,93 @@ class Validation
     {
         foreach ($items as $item => $rules)
         {
-            foreach ($rules as $rule => $rule_value)
-            {
-
-                $value = trim($source[$item]);
-                $item = escape($item);
-
-                if ($rule === 'optional' && ! empty($value))
+            if (isset($source[$item])) {
+                foreach ($rules as $rule => $rule_value)
                 {
-                   $this->_optional = true;
-                }
+                    $value = trim($source[$item]);
+                    $item = escape($item);
 
-                if ($rule === 'required' && empty($value))
-                {
-                    $this->addError("{$item} is required.");
-                }
-
-                if ($rule === 'bind' && empty($value) && ! empty($source[$rule_value]))
-                {
-                    $this->addError("{$item} is required.");
-                }
-
-                else if (!empty($value))
-                {
-                    switch ($rule)
+                    if ($rule === 'optional' && ! empty($value))
                     {
-                        case 'min':
-
-                            if (strlen($value) < $rule_value)
-                            {
-                                $this->addError("{$item} must be minimum of {$rule_value} character.");
-                            }
-                            break;
-
-                        case 'max':
-
-                            if (strlen($value) > $rule_value)
-                            {
-                                $this->addError("{$item} must be maximum of {$rule_value} character.");
-                            }
-                            break;
-
-                        case 'match':
-
-                            if ($value != $source[$rule_value])
-                            {
-                                $this->addError("{$rule_value} must match {$item}.");
-                            }
-                            break;
-
-                        case 'email':
-
-                            if (filter_var($value,FILTER_VALIDATE_EMAIL) !==  $rule_value)
-                            {
-                                $this->addError("{$item} must valid email format.");
-                            }
-                            break;
-
-                        case 'alnum':
-
-                            if (ctype_alnum($value) !==  $rule_value)
-                            {
-                                $this->addError("{$item} must alphanumeric.");
-                            }
-                            break;
-
-                        case 'unique':
-                            $check = $this->_db->get($rule_value, array($item, '=', $value));
-
-                            if ($check->count())
-                            {
-                                $this->addError("{$item} already exists.");
-                            }
-                            break;
-
-                        case 'verify':
-                            
-                            if (! Password::check($value, $this->_user->data()->password))
-                            {
-                                $this->addError("Wrong Current Password!.");
-                            }
-                            break;
+                       $this->_optional = true;
                     }
+
+                    if ($rule === 'required' && empty($value) && !$this->_optional)
+                    {
+                        $this->addError("{$item} field is required.");
+                    }
+
+                    if ($rule === 'bind' && empty($value) && ! empty($source[$rule_value]))
+                    {
+                        $this->addError("{$item} field is required.");
+                    }
+
+                    else if (!empty($value))
+                    {
+                        switch ($rule)
+                        {
+                            case 'min':
+
+                                if (strlen($value) < $rule_value)
+                                {
+                                    $this->addError("{$item} must be minimum of {$rule_value} character.");
+                                }
+                                break;
+
+                            case 'max':
+
+                                if (strlen($value) > $rule_value)
+                                {
+                                    $this->addError("{$item} must be maximum of {$rule_value} character.");
+                                }
+                                break;
+
+                            case 'match':
+
+                                if ($value != $source[$rule_value])
+                                {
+                                    $this->addError("{$rule_value} must match {$item}.");
+                                }
+                                break;
+
+                            case 'email':
+
+                                if (filter_var($value,FILTER_VALIDATE_EMAIL) !==  $rule_value)
+                                {
+                                    $this->addError("{$item} must valid email format.");
+                                }
+                                break;
+
+                            case 'alnum':
+
+                                if (ctype_alnum($value) !==  $rule_value)
+                                {
+                                    $this->addError("{$item} must alphanumeric.");
+                                }
+                                break;
+
+                            case 'unique':
+                                $check = $this->_db->get($rule_value, array($item, '=', $value));
+
+                                if ($check->count())
+                                {
+                                    $this->addError("{$item} already exists.");
+                                }
+                                break;
+
+                            case 'verify':
+                                
+                                if (! Password::check($value, $this->_user->data()->password))
+                                {
+                                    $this->addError("Wrong Current Password!.");
+                                }
+                                break;
+                        }
+                    }
+                }
+            } else {
+                if (!$this->_optional) {
+                    $this->addError("{$item} field is missing.");
                 }
             }
         }

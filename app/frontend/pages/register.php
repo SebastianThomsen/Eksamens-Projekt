@@ -14,7 +14,7 @@
         <h2>Register</h2>
         <form action="" method="post" onsubmit="return validateForm()">
           <div class="form-group">
-            <input type="text" class="form-control" id="navn" placeholder="Fornavn" name="navn" required>
+            <input type="text" class="form-control" id="name" placeholder="Fornavn" name="name" required>
           </div>
           <div class="form-group">
             <input type="text" class="form-control" id="efternavn" placeholder="Efternavn" name="efternavn" required>
@@ -35,7 +35,7 @@
             <input type="text" class="form-control" id="skole" placeholder="Skole" name="skole" required>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
+            <input type="text" class="form-control" id="username" placeholder="Email" name="username" required>
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="password" placeholder="Adgangskode" name="password" required>

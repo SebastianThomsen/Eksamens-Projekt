@@ -62,7 +62,7 @@
       var adresse = document.getElementById("adresse").value;
       var postnummer = document.getElementById("postnummer").value;
       var skole = document.getElementById("skole").value;
-      var email = document.getElementById("email").value;
+      var email = document.getElementById("username").value;
       var password = document.getElementById("password").value;
       var password_again = document.getElementById("password_again").value;
 
@@ -80,13 +80,13 @@
         adresse == "" ||
         postnummer == "" ||
         skole == "" ||
-        email == "" ||
+        username == "" ||
         password == "" ||
         password_again == ""
       ) {
         alert("All fields are required!");
         return false; // Forhindrer formularen i at blive sendt
-      } else if (!emailPattern.test(email)) {
+      } else if (!emailPattern.test(username)) {
         alert("Please enter a valid email address ending with '@gmail.com'.");
         return false; // Forhindrer formularen i at blive sendt
       }

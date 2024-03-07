@@ -14,7 +14,7 @@
         <h2>Login</h2>
         <form action="" method="post" onsubmit="return validateForm()">
           <div class="form-group">
-            <input type="text" class="form-control" id="email" placeholder="Email" name="email" required>
+            <input type="text" class="form-control" id="username" placeholder="Email" name="username" required>
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="password" placeholder="Adgangskode" name="password" required>
@@ -34,10 +34,10 @@
 
   <script>
     function validateForm() {
-      var email = document.getElementById("email").value;
+      var username = document.getElementById("username").value;
       var password = document.getElementById("password").value;
 
-      if (email == "" || password == "") {
+      if (username == "" || password == "") {
         alert("Begge felter skal udfyldes!");
         return false; // Forhindrer formularen i at blive sendt
       }

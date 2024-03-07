@@ -9,13 +9,13 @@ if (Input::exists()) {
             'name' => array(
                 'required' => true,
                 'min' => 2,
-                'max' => 50
+                'max' => 15
             ),
 
             'username' => array(
                 'required' => true,
                 'min' => 2,
-                'max' => 20,
+                'max' => 100,
                 'unique' => 'users'
             ),
 

@@ -31,7 +31,11 @@ if (Input::exists()) {
                 'optional'  => true,
                 'min'       => 6,
                 'match'   => 'new_password',
-                'bind' => 'new_password',
+                'bind' => 'new_password'
+            ),
+            'change_role' => array(
+                'optional'  => true,
+                'match'     => 'change_role'
             ),
         ));
 

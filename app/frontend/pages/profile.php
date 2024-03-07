@@ -20,6 +20,13 @@
                         <td><?php echo escape($data->username); ?></td>
                       </tr>
                       <tr>
+                        <td>Email :</td>
+                        <td><?php echo escape($data->email); ?></td>
+                      </tr>
+                      <tr>
+                        <td>Role :</td>
+                        <td><?php echo escape($data->role); ?></td>
+                      <tr>
                         <td>Date Joined :</td>
                         <td><?php echo escape($data->joined); ?></td>
                       </tr>

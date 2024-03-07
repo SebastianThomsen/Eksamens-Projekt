@@ -6,6 +6,13 @@ class Teacher extends User {
         $this->setRole('teacher');
     }
 
+    public function changeRole($role) {
+        if (validateRole($role)) 
+            $this->role = $role;
+        } else {
+            throw new Exception("Invalid role.");
+        }
+
     public function update($fields = array(), $id = null) {
         if (!$id && $this->isLoggedIn()) {
             $id = $this->data()->user_id;

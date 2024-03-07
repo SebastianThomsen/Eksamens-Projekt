@@ -22,6 +22,13 @@
       <label for="confirm_new_password">Confirm Password :</label>
       <input type="password" class="form-control" id="confirm_new_password" placeholder="Confirm your new password" name="confirm_new_password">
     </div>
+    <div class="form-group">
+      <label for="role">Change Role :</label>
+      <select class="form-control" id="role" name="role">
+        <option value="administator">Administrator</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
     <input type="hidden" name="csrf_token" value="<?php echo Token::generate(); ?>">
     <input type="submit" value="Update Profile">
   </form>

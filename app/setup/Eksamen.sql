@@ -4,7 +4,8 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `joined` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `usertype` VARCHAR(50) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `users_sessions` (
@@ -116,7 +117,7 @@ ALTER TABLE `rooms`
 -- Inserting initial data
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `name`) VALUES
-(1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper'),
-(2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd'),
-(3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa');
+INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
+(1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper', 'student'),
+(2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd', 'admin'),
+(3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa', 'teacher');

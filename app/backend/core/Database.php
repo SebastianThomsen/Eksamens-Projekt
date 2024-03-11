@@ -89,6 +89,10 @@ class Database
 
         return false;
     }
+    
+    public function prepare($sql) {
+        return $this->pdo->prepare($sql);
+    }
 
     public function get($table, $where)
     {

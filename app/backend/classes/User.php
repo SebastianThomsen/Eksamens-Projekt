@@ -7,7 +7,7 @@ class User
             $_sessionName,
             $_cookieName,
             $_isLoggedIn,
-            $role;
+            $userLevel;
 
     public function __construct($user = null)
     {

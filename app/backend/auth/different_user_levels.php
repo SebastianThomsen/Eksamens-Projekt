@@ -1,13 +1,34 @@
 <?php
 require_once 'app/backend/core/Init.php';
 require_once 'app/backend/auth/user.php';
+require_once 'app/backend/classes/User.php';
+require_once 'app/backend/classes/Administrator.php';
+require_once 'app/backend/classes/Teacher.php';
+require_once 'app/backend/classes/Student.php';
 
-// Define user levels
+$user = new User();
+
+$admin = new Administrator();
+
+$teacher = new Teacher();
+
+$student = new Student();
+
+// Defines user levels
 define('ADMINISTRATOR', 1);
 define('TEACHER', 2);
 define('STUDENT', 3);
 
-$userLevel = getUserLevel($user->data()->user_id); 
+$userData = $user->data();
+if ($user->isLoggedIn()) {
+    $userData = $user->data();
+    $userLevel = getUserLevel($userData->user_id);
+} else {
+    // Redirect to login page or show an error
+    header('Location: login.php');
+    exit();
+}
+$userLevel = getUserLevel($userData->user_id);
 
 function getUserLevel($userId)
     {
@@ -18,7 +39,7 @@ function getUserLevel($userId)
         return $user ? $user['level'] : null;
     } 
 
-    // Get the user level
+    // Gets the user level
 if ($userLevel === ADMINISTRATOR) {
     // Code for administrators 
     echo "Welcome, Administrator!";

@@ -32,7 +32,7 @@ class Database
             self::$_instance = new Database();
         }
 
-        return self::$_instance;
+        return self::$_instance;    
     }
 
     public function query($sql, $params = array())
@@ -88,10 +88,6 @@ class Database
         }
 
         return false;
-    }
-    
-    public function prepare($sql) {
-        return $this->pdo->prepare($sql);
     }
 
     public function get($table, $where)

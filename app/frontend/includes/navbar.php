@@ -1,47 +1,59 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="index.php">App Name</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <?php if ($user->isLoggedIn()) : ?>
-        <li class="nav-item">
-          <a class="nav-link" href="index.php">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="forum.php">Forum</a>
-        </li>
-      <?php endif; ?>
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Name</title>
+    <link rel="stylesheet" type="text/css" href="navstyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-    <?php if ($user->isLoggedIn()) : ?>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="profile.php">
-            <span class="glyphicon glyphicon-user"></span> Profile
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="logout.php">
-            <span class="glyphicon glyphicon-log-out"></span> Logout
-          </a>
-        </li>
-      </ul>
-    <?php else : ?>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="register.php">
-            <span class="glyphicon glyphicon-user"></span> Register
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="login.php">
-            <span class="glyphicon glyphicon-log-in"></span> Log-in
-          </a>
-        </li>
-      </ul>
-    <?php endif; ?>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-top">
+            <div class="navbar-icons">
+                <?php if ($user->isLoggedIn()) : ?>
+                    <a class="nav-link" href="home.php">
+                        <i class="bi bi-house"></i>
+                    </a>
+                    <a class="nav-link" href="forum.php">
+                        <i class="bi bi-chat"></i>
+                    </a>
+                    <!-- Profile icon without dropdown indicator -->
+                    <div class="dropdown">
+                        <i class="bi bi-person profile-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="logout.php">Logout</a>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 
-  </div>
-</nav>
+    <script>
+        // JavaScript for dropdown menu
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropdowns = document.querySelectorAll('.dropdown');
+            dropdowns.forEach(function(dropdown) {
+                dropdown.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    this.querySelector('.dropdown-menu').classList.toggle('show');
+                });
+            });
+
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropdown')) {
+                    var dropdowns = document.querySelectorAll('.dropdown-menu');
+                    dropdowns.forEach(function(content) {
+                        if (content.classList.contains('show')) {
+                            content.classList.remove('show');
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>

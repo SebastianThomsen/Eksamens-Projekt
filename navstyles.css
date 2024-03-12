@@ -85,6 +85,10 @@
     transition: transform 0.3s, box-shadow 0.3s; /* Add transition for smooth size change and box shadow */
 }
 
+.bi.bi-person.profile-icon {
+    font-size: 28px; /* Adjust the font size as needed */
+}
+
 /* Enlarge profile icon and add drop shadow on hover */
 .navbar-icons .profile-icon:hover {
     transform: scale(1.2); /* Enlarge the icon */

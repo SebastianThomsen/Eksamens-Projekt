@@ -1,0 +1,44 @@
+.container {
+    padding-top: 20px;
+}
+
+.panel-heading {
+    background-color: #000000;
+    color: #fff;
+    padding-bottom: 6px;
+    border-radius: 20px;
+    width: 70%;
+}
+
+.panel-title {
+    margin-top: 10%;
+    margin-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding-top: 3px;
+}
+
+.table-user-information td {
+    border-top: 0;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Update Information Button */
+.custom-btn-primary {
+    background-color: #57575771;
+    color: #fff;
+    border-radius: 20px;
+}
+
+/* Delete Account Button */
+.custom-btn-danger {
+    background-color: #dc354680;
+    color: #fff;
+    border-radius: 20px;
+}
+

@@ -11,24 +11,3 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 
-  <!-- Custom Assets 
-
-  <link rel="stylesheet" href="<?php //echo FRONTEND_ASSET . 'css/profile.css'; ?>">
--->
-  <style>
-    .fakeimg {
-      height: 200px;
-      background: #aaa;
-    }
-  </style>
-</head>
-
-<body>
-
-<div class="jumbotron text-center" style="margin-bottom:0">
-  <h1>My First <?php appName(); ?></h1>
-  <p>Resize this responsive page to see the effect!</p>
-  <?php if ($user->isLoggedIn()) : ?>
-    <h3 align="right">Hello, <?php echo $user->data()->name; ?></h3>
-  <?php endif; ?>
-</div>

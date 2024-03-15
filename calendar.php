@@ -2,5 +2,5 @@
 <?php require_once FRONTEND_INCLUDE . 'header.php'; ?>
 <?php require_once FRONTEND_INCLUDE . 'navbar.php'; ?>
 <?php require_once FRONTEND_INCLUDE . 'messages.php'; ?>
-<?php require_once FRONTEND_PAGE . 'calender.php'; ?>
+<?php require_once FRONTEND_PAGE . 'schedule.php'; ?>
 <?php require_once FRONTEND_INCLUDE . 'footer.php'; ?>

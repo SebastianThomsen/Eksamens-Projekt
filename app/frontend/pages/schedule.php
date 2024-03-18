@@ -24,10 +24,10 @@
     <div id="subjectList">
         <h2>Fag</h2>
         <ul>
-            <li>Dansk</li>
-            <li>Matematik</li>
-            <li>Fysik</li>
-            <li>idræt </li>
+            <li onclick="selectSubject('Dansk')">Dansk</li>
+            <li onclick="selectSubject('Matematik')">Matematik</li>
+            <li onclick="selectSubject('Fysik')">Fysik</li>
+            <li onclick="selectSubject('Idræt')">Idræt</li>
         </ul>
     </div>
 
@@ -51,8 +51,7 @@
                 <tr>
                     <td class="editable" data-day="Monday" data-time-slot="<?php echo $time_slot; ?>"><?php echo $time_slot; ?></td>
                     <?php foreach ($days as $day): ?>
-                        <td>
-                            <button type="button" onclick="addLesson('<?php echo $day; ?>', '<?php echo $time_slot; ?>')">Add Lesson</button>
+                        <td onclick="addLesson('<?php echo $day; ?>', '<?php echo $time_slot; ?>')">
                         </td>
                     <?php endforeach; ?>
                 </tr>
@@ -61,15 +60,28 @@
     </table>
 
     <script>
-        function addLesson(day, timeSlot) {
-            const selectedCell = document.querySelector(`td[data-day="${day}"][data-time-slot="${timeSlot}"]`);
-            const lessonCell = createLessonCell('', timeSlot);
-            selectedCell.appendChild(lessonCell);
+        let selectedSubject = '';
+
+        function selectSubject(subject) {
+            selectedSubject = subject;
         }
 
-        function createLessonCell(subject, timeSlot) {
+        function addLesson(day, timeSlot) {
+            const selectedCell = event.target;
+            // Hvis cellen allerede indeholder et fag
+            if (selectedCell.childElementCount > 0) {
+                // Fjern faget fra cellen
+                selectedCell.removeChild(selectedCell.firstChild);
+            } else if (selectedSubject !== '') {
+                // Hvis cellen er tom og et fag er valgt, tilføj faget til cellen
+                const lessonCell = createLessonCell(selectedSubject);
+                selectedCell.appendChild(lessonCell);
+            }
+        }
+
+        function createLessonCell(subject) {
             const lessonCell = document.createElement('td');
-            lessonCell.textContent = `${subject} - ${timeSlot}`;
+            lessonCell.textContent = subject;
             return lessonCell;
         }
     </script>

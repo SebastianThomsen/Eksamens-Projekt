@@ -23,7 +23,7 @@
                     <div class="dropdown">
                         <i class="bi bi-person profile-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="profile.php">Edit Profile</a>
+                            <a class="dropdown-item" href="profile.php">Profile</a>
                             <a class="dropdown-item" href="logout.php">Logout</a>
                         </div>
                     </div>

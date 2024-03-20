@@ -28,6 +28,9 @@
             <li onclick="selectSubject('Matematik')">Matematik</li>
             <li onclick="selectSubject('Fysik')">Fysik</li>
             <li onclick="selectSubject('Idræt')">Idræt</li>
+            <li onclick="selectSubject('Kommunikation og it')">Kommunikation og it</li>
+            <li onclick="selectSubject('Teknikfag')">Teknikfag</li>
+            <li onclick="selectSubject('Idéhistorie')">Idéhistorie</li>
         </ul>
     </div>
 
@@ -45,7 +48,7 @@
         </thead>
         <tbody>
             <?php
-            $time_slots = ['08:10', '09:10', '10:20', '11:20', '12:50', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00'];
+            $time_slots = ['08:10 - 09:10', '09:10 - 10:10', 'Pause', '10:20 - 11:20', 'Pause', '11:50 - 12:50', 'Pause', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00',];
             $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
             foreach ($time_slots as $time_slot): ?>
                 <tr>

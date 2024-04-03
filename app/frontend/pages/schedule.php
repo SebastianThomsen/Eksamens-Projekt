@@ -8,6 +8,7 @@
         table {
             border-collapse: collapse;
             width: 100%;
+            margin-right: 100px;
         }
         th, td {
             border: 1px solid black;
@@ -17,9 +18,49 @@
         th {
             background-color: #f2f2f2;
         }
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            white-space: nowrap; /* Tilføjet for at forhindre linjeskift */
+            overflow: hidden; /* Tilføjet for at skjule overskydende tekst */
+            max-width: 0; /* Tilføjet for at sikre, at teksten ikke gør cellen større */
+        }
     </style>
 </head>
 <body>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "defire";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT schedule_id, name FROM schedule";
+$result = $conn->query($sql);
+
+?>
+
+    <!-- Dropdown-menu til valg af klasse -->
+    <div>
+        <label for="scheduleSelection">Select Schedule:</label>
+        <select id="scheduleSelection" onchange="changeSchedule()">
+            <?php
+            $sql = "SELECT schedule_id, name FROM schedule";
+            $result = $conn->query($sql);
+            while ($row = $result->fetch_assoc()) {
+                echo "<option value='" . $row['schedule_id'] . "'>" . $row['name'] . "</option>";
+            }
+            ?>
+        </select>
+    </div>
+
     <!-- Liste over fag -->
     <div id="subjectList">
         <h2>Fag</h2>
@@ -72,21 +113,15 @@
         function addLesson(day, timeSlot) {
             const selectedCell = event.target;
             // Hvis cellen allerede indeholder et fag
-            if (selectedCell.childElementCount > 0) {
+            if (selectedCell.textContent.trim() !== '') {
                 // Fjern faget fra cellen
-                selectedCell.removeChild(selectedCell.firstChild);
+                selectedCell.textContent = '';
             } else if (selectedSubject !== '') {
                 // Hvis cellen er tom og et fag er valgt, tilføj faget til cellen
-                const lessonCell = createLessonCell(selectedSubject);
-                selectedCell.appendChild(lessonCell);
+                selectedCell.textContent = selectedSubject;
             }
         }
 
-        function createLessonCell(subject) {
-            const lessonCell = document.createElement('td');
-            lessonCell.textContent = subject;
-            return lessonCell;
-        }
-    </script>
+    </script>   
 </body>
 </html>

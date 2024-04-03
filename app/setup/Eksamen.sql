@@ -78,11 +78,19 @@ CREATE TABLE `rooms` (
   `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
-  `navn` varchar(50) NOT NULL,
+  `name` varchar(50) NOT NULL,
   `subject` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `schedule` (
+  `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,	
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 -- --------------------------------------------------------
@@ -120,3 +128,15 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `name`) VALUES
 (1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper'),
 (2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd'),
 (3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa');
+
+INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
+(1, 'Klasse 1'),
+(2, 'Klasse 2'),
+(3, 'Klasse 3'),
+(4, 'Klasse 4'),
+(5, 'Klasse 5'),
+(6, 'Klasse 6'),
+(7, 'Klasse 7'),
+(8, 'Klasse 8'),
+(9, 'Klasse 9'),
+(10, 'Klasse 10');

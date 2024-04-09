@@ -36,13 +36,13 @@ tr:nth-child(even) {
 
 /* Style delete button icon */
 .delete-btn i {
-    color: #f44336; /* Set icon color */
+    color: #000000; /* Set icon color */
     font-size: 1.5rem; /* Adjust icon size */
 }
 
 /* Change icon color on hover */
 .delete-btn:hover i {
-    color: #d32f2f;
+    color: #ff0000;
 }
 
 /* Scale up the button on hover */

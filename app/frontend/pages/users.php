@@ -37,7 +37,7 @@ $users = $user->getAllUsers();
                 <td>
                     <form action="app/backend/auth/delete-account.php" method="post">
                         <input type="hidden" name="user_id" value="<?php echo escape($user->id); ?>">
-                        <button type="submit" class="delete-btn" data-tooltip="Delete"><i class="bi bi-trash3"></i></button>
+                        <button type="submit" class="delete-btn" data-tooltip="Slet brugerkonto"><i class="bi bi-trash3"></i></button>
                     </form>
                 </td>
             </tr>

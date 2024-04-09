@@ -13,11 +13,13 @@ th {
     background-color: #f2f2f2;
     text-align: left;
     padding: 8px;
+    padding-left: 4%;
 }
 
 /* Style table data cells */
 td {
     padding: 8px;
+    padding-left: 4%;
     border-bottom: 1px solid #ddd;
 }
 

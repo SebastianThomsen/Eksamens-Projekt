@@ -19,17 +19,17 @@ $users = $user->getAllUsers();
 <table>
     <thead>
         <tr>
-            <th>Username</th>
+            <th>Navn</th>
             <th>Email</th>
-            <th>Role</th>
-            <th>Action</th>
+            <th>Rolle</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($users as $user): ?>
             <tr>
-                <td><?php echo escape($user->username); ?></td>
                 <td><?php echo escape($user->name); ?></td>
+                <td><?php echo escape($user->username); ?></td>
                 <td><?php echo escape($user->role); ?></td>
                 <td>
                     <form action="app/backend/auth/delete-account.php" method="post">

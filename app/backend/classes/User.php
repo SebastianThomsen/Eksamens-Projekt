@@ -36,6 +36,14 @@ class User
             $this->find($user);
         }
     }
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM users";
+        if($this->_db->query($sql)) {
+            return $this->_db->results();
+        }
+        return [];
+    }
 
     public function update($fields = array(), $id = null)
     {
@@ -64,13 +72,10 @@ class User
             throw new Exception("Unable to create the user.");
         }
     }
-
-    public function find($user = null)
-    {
-        if ($user)
-        {
+    
+    public function find($user = null) {
+        if ($user) {
             $field  = (is_numeric($user)) ? 'user_id' : 'username';
-
             $data = $this->_db->get('users', array($field, '=', $user));
 
             if ($data->count())

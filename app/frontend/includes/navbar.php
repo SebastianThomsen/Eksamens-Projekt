@@ -17,7 +17,7 @@
                         <i class="bi bi-house"></i>
                     </a>
                     <a class="nav-link" href="forum.php">
-                        <i class="bi bi-chat"></i>
+                        <i class="bi bi-folder2"></i>
                     </a>
                     <!-- Profile icon without dropdown indicator -->
                     <div class="dropdown">

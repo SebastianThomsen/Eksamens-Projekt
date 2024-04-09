@@ -1,4 +1,5 @@
 <?php
+require_once 'app/backend/classes/Student.php';
 
 class User
 {
@@ -48,11 +49,18 @@ class User
             throw new Exception('Unable to update the user.');
         }
     }
-
-    public function create($fields = array())
-    {
-        if (!$this->_db->insert('users', $fields))
-        {
+    public function changeRole($newRole) {
+        if (!in_array($newRole, ['student', 'teacher', 'administrator'])) {
+            throw new Exception("Invalid role.");
+        }
+        $this->_db->update('users', 'user_id', $this->data()->user_id, ['role' => $newRole]);
+    }
+    public function create($fields = array(), $role = null) {
+        if (!in_array($role, ['student', 'teacher', 'administrator'])) {
+            $role = 'student';
+        }
+        $fields['role'] = $role;
+        if (!$this->_db->insert('users', $fields)) {
             throw new Exception("Unable to create the user.");
         }
     }
@@ -171,10 +179,16 @@ class User
         {
             $id = $this->data()->user_id;
         }
-
+    
         if (!$this->_db->delete('users', array('user_id', '=', $id)))
         {
             throw new Exception('Unable to update the user.');
         }
     }
+    
+    public function validateRole($role) {
+        $validRoles = ['admininstrator', 'teacher', 'student'];
+        return in_array($role, $validRoles);
+    }
+    
 }

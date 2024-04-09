@@ -32,6 +32,8 @@ if (Input::exists()) {
 
         if ($validate->passed()) {
             try {
+                $user = new User();
+                $user->create(['username' => 'John', 'password' => 'password'], 'student');
                 $user->create(array(
                     'username'  => Input::get('username'),
                     'password'  => Password::hash(Input::get('password')),

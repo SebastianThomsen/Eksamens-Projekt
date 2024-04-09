@@ -91,6 +91,12 @@ CREATE TABLE `rooms` (
 --
 -- Adding FOREIGN KEY and cascading
 --
+ALTER TABLE `users`
+ADD COLUMN `user_levels` INT NOT NULL DEFAULT 0;
+
+ALTER TABLE `users`
+ADD COLUMN `role` ENUM('student', 'teacher', 'administrator') NOT NULL DEFAULT 'student';
+
 
 ALTER TABLE `users_sessions`
     ADD CONSTRAINT `users_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;

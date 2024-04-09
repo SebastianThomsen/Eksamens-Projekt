@@ -24,12 +24,6 @@ class Teacher extends User {
         }
     }
 
-    public function create($fields = array()) {
-        if (!$this->_db->insert('users', $fields)) {
-            throw new Exception("Unable to create the user.");
-        }
-    }
-
     public function find($user = null) {
         if ($user) {
             $field = (is_numeric($user)) ? 'user_id' : 'username';

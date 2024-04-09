@@ -24,7 +24,10 @@ class Student extends User {
         }
     }
 
-    public function create($fields = array()) {
+    public function create($fields = array(), $role = null) {
+        if ($role !== 'student') {
+            throw new Exception("Invalid role for Student class.");
+        }
         if (!$this->_db->insert('users', $fields)) {
             throw new Exception("Unable to create the user.");
         }

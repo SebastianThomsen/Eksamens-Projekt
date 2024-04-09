@@ -2,6 +2,11 @@
 require_once 'app/backend/core/Init.php';
 require_once 'app/backend/auth/user.php';
 require_once 'app/backend/classes/User.php';
+
+define('ADMINISTRATOR', 1);
+define('TEACHER', 2);
+define('STUDENT', 3);
+
 require_once 'app/backend/classes/Administrator.php';
 require_once 'app/backend/classes/Teacher.php';
 require_once 'app/backend/classes/Student.php';
@@ -14,21 +19,8 @@ $teacher = new Teacher();
 
 $student = new Student();
 
-// Defines user levels
-define('ADMINISTRATOR', 1);
-define('TEACHER', 2);
-define('STUDENT', 3);
-
 $userData = $user->data();
-if ($user->isLoggedIn()) {
-    $userData = $user->data();
-    $userLevel = getUserLevel($userData->user_id);
-} else {
-    // Redirect to login page or show an error
-    header('Location: login.php');
-    exit();
-}
-$userLevel = getUserLevel($userData->user_id);
+
 
 function getUserLevel($userId)
     {
@@ -38,19 +30,11 @@ function getUserLevel($userId)
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         return $user ? $user['level'] : null;
     } 
-
-    // Gets the user level
-if ($userLevel === ADMINISTRATOR) {
-    // Code for administrators 
-    echo "Welcome, Administrator!";
-    } elseif ($userLevel === TEACHER) {
-    // Code for teachers
-    echo "Welcome, Teacher!";
-    } elseif ($userLevel === STUDENT) {
-    // Code for students
-    echo "Welcome, Student!";
+    
+    if (property_exists($user, 'role')) {
+        // Now you can safely access the role property
+        $role = $user->role;
     } else {
-    // Code for unauthorized users
-    echo "Unauthorized access!";
+        echo "Role property does not exist in the user object.";
     }
 ?>

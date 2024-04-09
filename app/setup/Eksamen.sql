@@ -132,9 +132,9 @@ ALTER TABLE `rooms`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper', 'student'),
-(2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd', 'admin'),
-(3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa', 'teacher');
+(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator');
+
+UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),

@@ -1,5 +1,5 @@
 <?php
-require_once 'app/backend/core/Init.php';
+require_once 'app/backend/core/Init.php'; // This file contains the initialization of the application
 
 if (Input::exists()) {
     if (Token::check(Input::get('csrf_token'))) {
@@ -14,20 +14,21 @@ if (Input::exists()) {
                 'required'  => true
             )
         ));
-
-        if ($validation->passed()) {
-            $remember   = (Input::get('remember') === 'on') ? true : false;
-            $login      = $user->login(Input::get('username'), Input::get('password'), $remember);
-            if ($login) {
-                Session::flash('login-success', 'You have successfully logged in!');
-                Redirect::to('home.php');
+    }
+    if ($validation->passed()) {
+        $remember   = (Input::get('remember') === 'on') ? true : false;
+        $login      = $user->login(Input::get('username'), Input::get('password'), $remember);
+        if ($login) {
+            Session::flash('login-success', 'You have successfully logged in!');
+            if ($user->data()->role == 'administrator') {
+                Redirect::to('admin.php');
             } else {
-                echo '<div class="alert alert-danger"><strong></strong>Incorrect Credentials! Please try again...</div>';
+                Redirect::to('index.php');
             }
-        } else {
-            foreach ($validation->errors() as $error) {
-                echo '<div class="alert alert-danger"><strong></strong>' . cleaner($error) . '</div>';
-            }
+        }
+    } else {
+        foreach ($validation->errors() as $error) {
+            echo '<div class="alert alert-danger"><strong></strong>' . cleaner($error) . '</div>';
         }
     }
 }

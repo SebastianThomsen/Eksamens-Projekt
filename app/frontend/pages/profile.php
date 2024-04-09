@@ -34,6 +34,35 @@
                     </table>
                 </div>
             </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class=" col-md-9 col-lg-9 ">
+                  <table class="table table-user-information">
+                    <tbody>
+                      <tr>
+                        <td>Name :</td>
+                        <td><?php echo escape($data->name); ?></td>
+                      </tr>
+                      <tr>
+                        <td>Username :</td>
+                        <td><?php echo escape($data->username); ?></td>
+                      </tr>
+                      <tr>
+                        <td>Email :</td>
+                        <td><?php echo escape($data->email); ?></td>
+                      </tr>
+                      <tr>
+                        <td>Role :</td>
+                        <td><?php echo escape($data->role); ?></td>
+                      <tr>
+                        <td>Date Joined :</td>
+                        <td><?php echo escape($data->joined); ?></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <a href="update-account.php" class="btn btn-primary">Update Information</a>
+                  <a href="index.php" class="btn btn-primary">Back</a>
+                  <a href="delete-account.php" class="btn btn-danger">Delete Account</a>
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <h3 class="panel-title">Rumdetajler</h3>

@@ -6,6 +6,14 @@ class Student extends User {
         $this->setRole('student');
     }
 
+    public function changeRole($role) {
+    if (validateRole($role)) {
+        $this->role = $role;
+    } else {
+        throw new Exception("Invalid role.");
+    }
+}
+
     public function update($fields = array(), $id = null) {
         if (!$id && $this->isLoggedIn()) {
             $id = $this->data()->user_id;
@@ -16,7 +24,10 @@ class Student extends User {
         }
     }
 
-    public function create($fields = array()) {
+    public function create($fields = array(), $role = null) {
+        if ($role !== 'student') {
+            throw new Exception("Invalid role for Student class.");
+        }
         if (!$this->_db->insert('users', $fields)) {
             throw new Exception("Unable to create the user.");
         }

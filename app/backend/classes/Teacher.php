@@ -6,6 +6,14 @@ class Teacher extends User {
         $this->setRole('teacher');
     }
 
+    public function changeRole($role) {
+        if (validateRole($role)) {
+            $this->role = $role;
+        } else {
+            throw new Exception("Invalid role.");
+        }
+    }
+
     public function update($fields = array(), $id = null) {
         if (!$id && $this->isLoggedIn()) {
             $id = $this->data()->user_id;
@@ -13,12 +21,6 @@ class Teacher extends User {
 
         if (!$this->_db->update('users', 'user_id', $id, $fields)) {
             throw new Exception('Unable to update the user.');
-        }
-    }
-
-    public function create($fields = array()) {
-        if (!$this->_db->insert('users', $fields)) {
-            throw new Exception("Unable to create the user.");
         }
     }
 

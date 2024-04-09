@@ -32,7 +32,7 @@ class Database
             self::$_instance = new Database();
         }
 
-        return self::$_instance;
+        return self::$_instance;    
     }
 
     public function query($sql, $params = array())
@@ -131,7 +131,7 @@ class Database
         return false;
     }
 
-    public function update($table, $where, $id, $fields) //#TODO: Why is it hard-coded to user_id?
+    public function update($table, $where, $id, $fields)
     {
         $set    = '';
         $x      = 1;

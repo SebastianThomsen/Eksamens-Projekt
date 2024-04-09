@@ -40,7 +40,7 @@ function checkRole($requiredRole) {
                                 <td><?php echo escape($data->username); ?></td>
                             </tr>
                             <tr>
-                                <td>Role :</td>
+                                <td>Rolle :</td>
                                 <td><?php echo escape($data->role); ?></td>
                                 <tr>
                             <tr>

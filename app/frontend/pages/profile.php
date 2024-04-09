@@ -54,11 +54,11 @@ function checkRole($requiredRole) {
                     <a href="update-account.php" class="btn btn-primary custom-btn custom-btn-primary" aria-label="Opdater brugeroplysninger" title="Opdater brugeroplysninger"> 
                     <i class="bi bi-person-up"></i>
                     </a>
+                    <a href="users.php" class="btn btn-primary custom-btn custom-btn-primary" aria-label="Brugerliste" title="Brugerliste">
+                    <i class="bi bi-people"></i>
+                    </a>
                     <a href="delete-account.php" class="btn btn-danger custom-btn custom-btn-danger" aria-label="Slet brugerkonto" title="Slet brugerkonto"> 
                     <i class="bi bi-trash3"></i>
-                    </a>
-                    <a href="users.php" class="btn btn-info custom-btn custom-btn-info" aria-label="Brugerliste" title="Brugerliste">
-                    <i class="bi bi-people"></i>
 <?php endif; ?>
                     </div>
                 </div>

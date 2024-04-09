@@ -75,3 +75,11 @@
 .custom-btn-danger:focus {
     opacity: 1;
 }
+
+.custom-btn-primary:focus,
+.custom-btn-danger:focus {
+    outline: none; /* Remove blue outline when focused */
+    background-color: transparent;
+}
+
+}

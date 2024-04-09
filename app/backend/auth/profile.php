@@ -7,5 +7,3 @@ if (! $user->isLoggedIn())
 }
 
 $data = $user->data();
-
-

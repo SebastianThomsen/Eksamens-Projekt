@@ -1,4 +1,15 @@
+<?php
+require_once 'app/backend/core/Init.php';
 
+checkRole('administrator');
+
+function checkRole($requiredRole) {
+    $user = new User();
+    if ($user->data()->role !== $requiredRole) {
+        Redirect::to('profile.php');
+    }
+}
+?>
 <div class="container" style="padding-top: 5%; padding-bottom: 5%;">
 <h2>Update Information</h2>
   <form action="" method="post">

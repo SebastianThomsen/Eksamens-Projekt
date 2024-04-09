@@ -19,12 +19,8 @@ if (Input::exists()) {
         $remember   = (Input::get('remember') === 'on') ? true : false;
         $login      = $user->login(Input::get('username'), Input::get('password'), $remember);
         if ($login) {
-            if ($user->data()->role == 'administrator') {
-                Redirect::to('admin.php');
-            } else {
                 Redirect::to('home.php');
             }
-        }
     } else {
         foreach ($validation->errors() as $error) {
             echo '<div class="alert alert-danger"><strong></strong>' . cleaner($error) . '</div>';

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
     <link rel="stylesheet" type="text/css" href="profilestyles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -32,6 +34,14 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div class="text-right">
+                        <a href="update-account.php" class="btn btn-primary custom-btn custom-btn-primary" aria-label="Opdater brugeroplysninger" title="Opdater brugeroplysninger">
+                            <i class="bi bi-person-up"></i>
+                        </a>
+                        <a href="delete-account.php" class="btn btn-danger custom-btn custom-btn-danger" aria-label="Slet brugerkonto" title="Slet brugerkonto"> 
+                            <i class="bi bi-trash3"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="panel-body">
@@ -71,11 +81,6 @@
                     <!-- Room Details Content Goes Here -->
                 </div>
             </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad text-right">
-          <a href="update-account.php" class="btn btn-primary custom-btn custom-btn-primary">Opdater information</a>
-          <a href="delete-account.php" class="btn btn-danger custom-btn custom-btn-danger">Slet konto</a>
-
         </div>
     </div>
 </div>

@@ -2,22 +2,29 @@
     padding-top: 20px;
 }
 
+.panel-info {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .panel-heading {
     background-color: #000000;
     color: #fff;
-    padding-bottom: 6px;
-    border-radius: 20px;
-    width: 70%;
+    padding: 15px 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .panel-title {
-    margin-top: 10%;
-    margin-bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0;
     font-size: 20px;
-    padding-top: 3px;
+    text-align: center;
+}
+
+.panel-body {
+    padding: 20px;
 }
 
 .table-user-information td {
@@ -29,16 +36,42 @@
 }
 
 /* Update Information Button */
-.custom-btn-primary {
-    background-color: #57575771;
-    color: #fff;
-    border-radius: 20px;
-}
-
-/* Delete Account Button */
+.custom-btn-primary,
 .custom-btn-danger {
-    background-color: #dc354680;
-    color: #fff;
     border-radius: 20px;
+    background-color: transparent;
+    color: #000000;
+    border: none;
+    font-size: 1.5em;
+    transition: transform 0.2s ease-in-out;
 }
 
+.custom-btn-primary {
+    font-size: 1.7em;
+}
+
+.custom-btn-primary:hover {
+    color: #000000;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-danger:hover {
+    background-color: transparent;
+    border: none;
+    transform: scale(1.1);
+}
+
+.custom-btn-danger:hover {
+    color: red;
+}
+
+.custom-btn-danger .bi {
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-danger:hover,
+.custom-btn-primary:focus,
+.custom-btn-danger:focus {
+    opacity: 1;
+}

@@ -5,6 +5,17 @@ $user = new User();
 $users = $user->getAllUsers();
 ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" type="text/css" href="usersstyles.css">
+</head>
+<body>
+
 <table>
     <thead>
         <tr>
@@ -30,3 +41,6 @@ $users = $user->getAllUsers();
         <?php endforeach; ?>
     </tbody>
 </table>
+
+</body>
+</html>

@@ -56,8 +56,7 @@ if (Input::exists()) {
                         'password'  => Password::hash(Input::get('new_password'))
                     ));
                 }
-                Session::flash('update-success', 'Profile successfully updated!');
-                Redirect::to('index.php');
+                Redirect::to('profile.php');
             } catch (Exception $e) {
                 die($e->getMessage());
             }

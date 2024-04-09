@@ -39,7 +39,6 @@ if (Input::exists()) {
                     'password'  => Password::hash(Input::get('password')),
                     'name'      => Input::get('name')
                 ));
-                Session::flash('register-success', 'Thanks for registering! You can login now.');
                 Redirect::to('index.php');
             } catch (Exception $e) {
                 die($e->getMessage());

@@ -22,7 +22,7 @@ if (Input::exists()) {
             if ($user->data()->role == 'administrator') {
                 Redirect::to('admin.php');
             } else {
-                Redirect::to('index.php');
+                Redirect::to('home.php');
             }
         }
     } else {

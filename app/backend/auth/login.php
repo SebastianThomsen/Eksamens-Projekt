@@ -19,7 +19,6 @@ if (Input::exists()) {
         $remember   = (Input::get('remember') === 'on') ? true : false;
         $login      = $user->login(Input::get('username'), Input::get('password'), $remember);
         if ($login) {
-            Session::flash('login-success', 'You have successfully logged in!');
             if ($user->data()->role == 'administrator') {
                 Redirect::to('admin.php');
             } else {

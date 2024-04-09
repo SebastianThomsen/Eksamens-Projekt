@@ -13,6 +13,9 @@ $users = $user->getAllUsers();
     <title>User Table</title>
     <!-- Link to the CSS file -->
     <link rel="stylesheet" type="text/css" href="usersstyles.css">
+    <!-- Link to Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -34,7 +37,7 @@ $users = $user->getAllUsers();
                 <td>
                     <form action="app/backend/auth/delete-account.php" method="post">
                         <input type="hidden" name="user_id" value="<?php echo escape($user->id); ?>">
-                        <input type="submit" value="Delete">
+                        <button type="submit" class="delete-btn" data-tooltip="Delete"><i class="bi bi-trash3"></i></button>
                     </form>
                 </td>
             </tr>

@@ -1,7 +1,15 @@
 <?php
-require_once 'app/backend/core/Init.php';
 require_once 'app/backend/auth/user.php';
+require_once 'app/backend/classes/User.php';
+require_once 'app/backend/core/Init.php';
+
 $user = new User();
+
+if (isset($_POST['delete'])) {
+    $userId = $_POST['user_id']; // Get the user_id from the form
+    $user->deleteUser($userId); // Delete the user
+}
+
 $users = $user->getAllUsers();
 ?>
 
@@ -32,9 +40,9 @@ $users = $user->getAllUsers();
                 <td><?php echo escape($user->name); ?></td>
                 <td><?php echo escape($user->role); ?></td>
                 <td>
-                    <form action="app/backend/auth/delete-account.php" method="post">
-                        <input type="hidden" name="user_id" value="<?php echo escape($user->id); ?>">
-                        <input type="submit" value="Delete">
+                    <form action="" method="post">
+                        <input type="hidden" name="user_id" value="<?php echo $user->id; ?>">
+                        <input type="submit" name="delete" value="Delete">
                     </form>
                 </td>
             </tr>

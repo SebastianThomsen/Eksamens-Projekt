@@ -190,6 +190,14 @@ class User
             throw new Exception('Unable to update the user.');
         }
     }
+
+    public function deleteUser($userId)
+    {
+        if (!$this->_db->delete('users', array('user_id', '=', $userId)))
+        {
+            throw new Exception('Unable to delete the user.');
+        }
+    }
     
     public function validateRole($role) {
         $validRoles = ['admininstrator', 'teacher', 'student'];

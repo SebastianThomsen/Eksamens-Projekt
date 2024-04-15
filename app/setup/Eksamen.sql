@@ -119,6 +119,8 @@ ALTER TABLE `students`
 ALTER TABLE `teachers`
     ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+Alter table `rooms`
+    ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE;  
 
 -- --------------------------------------------------------
 --

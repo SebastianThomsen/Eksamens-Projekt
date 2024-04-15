@@ -91,6 +91,15 @@ CREATE TABLE `rooms` (
   FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE `folders_rooms` (
+  `folder_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `folder_name` varchar(50) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 -- --------------------------------------------------------
 
 --
@@ -152,3 +161,15 @@ INSERT INTO `rooms` (`room_id`, `room_name`, `schedule_id`) VALUES
 (8, 'Room 8', 8),
 (9, 'Room 9', 9),
 (10, 'Room 10', 10);
+
+INSERT INTO `folders_rooms` (`folder_id`, `folder_name`, `room_id`) VALUES
+(1, 'Folder 1', 1),
+(2, 'Folder 2', 2),
+(3, 'Folder 3', 3),
+(4, 'Folder 4', 4),
+(5, 'Folder 5', 5),
+(6, 'Folder 6', 6),
+(7, 'Folder 7', 7),
+(8, 'Folder 8', 8),
+(9, 'Folder 9', 9),
+(10, 'Folder 10', 10);

@@ -39,6 +39,14 @@
             font-size: 12px;
             cursor: pointer;
         }
+        .enter-btn {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
         h2 {
             margin-top: 0;
         }
@@ -153,6 +161,7 @@
                 echo "<p>Class: " . $row['schedule_id'] . "</p>";
                 // Add delete button with room ID as query parameter
                 echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'\">X</button>";
+                echo "<button class='enter-btn' onclick=\"window.location.href='room_details.php ?room_id=".$row['room_id']."'\">Enter</button>";
                 echo "</div>";
             }
         } else {
@@ -161,16 +170,5 @@
         $conn->close();
         ?>
     </div>
-
-    <script>
-        // JavaScript code for confirmation before deleting a room
-        document.querySelectorAll('.delete-btn').forEach(item => {
-            item.addEventListener('click', event => {
-                if(!confirm("Are you sure you want to delete this room?")) {
-                    event.preventDefault(); // Prevents the default action (i.e., form submission)
-                }
-            });
-        });
-    </script>
 </body>
 </html>

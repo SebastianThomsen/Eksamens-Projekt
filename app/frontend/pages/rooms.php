@@ -56,18 +56,38 @@
     </style>
 </head>
 <body>
+    <?php
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "defire";
 
-    <form id="addRoomForm">
-        <input type="text" id="roomName" placeholder="Room Name" required>
-        <select id="classSelector" required>
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $roomName = $_POST['roomName'];
+        $selectedClass = $_POST['classSelector'];
+
+        $sql = "INSERT INTO rooms (room_name, schedule_id) VALUES ('$roomName', '$selectedClass')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    $conn->close();
+    ?>
+    <form id="addRoomForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <input type="text" id="roomName" name="roomName" placeholder="Room Name" required>
+        <select id="classSelector" name="classSelector" required>
             <option value="">Select Class</option>
-            <!-- PHP-koden her -->
             <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "defire";
-
             $conn = new mysqli($servername, $username, $password, $dbname);
 
             if ($conn->connect_error) {
@@ -91,9 +111,7 @@
     </form>
 
     <div class="container" id="roomContainer">
-        <!-- PHP-koden her -->
         <?php
-        // For at vise eksisterende rum
         $conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($conn->connect_error) {
@@ -116,29 +134,5 @@
         $conn->close();
         ?>
     </div>
-
-    <script>
-        document.getElementById('addRoomForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const roomName = document.getElementById('roomName').value;
-            const selectedClass = document.getElementById('classSelector').value;
-
-            if (roomName && selectedClass) {
-                const newRoom = document.createElement('div');
-                newRoom.classList.add('room');
-                newRoom.setAttribute('data-class', selectedClass); // Tilføj data-attribut for klassen
-                const heading = document.createElement('h2');
-                heading.textContent = roomName;
-                const paragraph = document.createElement('p');
-                paragraph.textContent = 'Class: ' + selectedClass;
-                newRoom.appendChild(heading);
-                newRoom.appendChild(paragraph);
-                document.getElementById('roomContainer').appendChild(newRoom);
-                document.getElementById('addRoomForm').reset();
-            } else {
-                alert('Please enter both room name and select a class.');
-            }
-        });
-    </script>
 </body>
 </html>

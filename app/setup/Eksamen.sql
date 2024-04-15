@@ -143,3 +143,15 @@ INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (8, 'Klasse 8'),
 (9, 'Klasse 9'),
 (10, 'Klasse 10');
+
+INSERT INTO `rooms` (`room_id`, `room_name`, `schedule_id`) VALUES
+(1, 'Room 1', 1),
+(2, 'Room 2', 2),
+(3, 'Room 3', 3),
+(4, 'Room 4', 4),
+(5, 'Room 5', 5),
+(6, 'Room 6', 6),
+(7, 'Room 7', 7),
+(8, 'Room 8', 8),
+(9, 'Room 9', 9),
+(10, 'Room 10', 10);

@@ -75,15 +75,6 @@ CREATE TABLE `schools` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `rooms` (
-  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `subject` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -132,9 +123,9 @@ ALTER TABLE `rooms`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator');
-
-UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
+(1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper', 'student'),
+(2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd', 'admin'),
+(3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa', 'teacher');
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),

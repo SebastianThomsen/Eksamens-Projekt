@@ -121,7 +121,6 @@ $result = $conn->query($sql);
                 selectedCell.textContent = selectedSubject;
             }
         }
-
-    </script>   
+    </script>  
 </body>
 </html>

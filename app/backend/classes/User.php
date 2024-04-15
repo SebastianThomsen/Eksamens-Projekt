@@ -178,17 +178,9 @@ class User
         return $this->_isLoggedIn;
     }
 
-    public function deleteMe()
-    {
-        if ($this->isLoggedIn())
-        {
-            $id = $this->data()->user_id;
-        }
-    
-        if (!$this->_db->delete('users', array('user_id', '=', $id)))
-        {
-            throw new Exception('Unable to update the user.');
-        }
+    public function deleteUser($userId) {
+        $db = DB::getInstance();
+        $result = $db->delete('users', array('id', '=', $userId));
     }
     
     public function validateRole($role) {

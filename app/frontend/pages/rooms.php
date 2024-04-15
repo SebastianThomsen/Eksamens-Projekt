@@ -1,3 +1,7 @@
+<?php
+require_once 'app/backend/core/Init.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +101,8 @@
         $sql = "INSERT INTO rooms (room_name, schedule_id) VALUES ('$roomName', '$selectedClass')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "";
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
@@ -145,6 +150,7 @@
 
     <div class="container" id="roomContainer">
         <?php
+
         $conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($conn->connect_error) {
@@ -159,8 +165,9 @@
                 echo "<div class='room' data-class='" . $row['schedule_id'] . "'>";
                 echo "<h2>" . $row['room_name'] . "</h2>";
                 echo "<p>Class: " . $row['schedule_id'] . "</p>";
-                // Add delete button with room ID as query parameter
-                echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'\">X</button>";
+                if (checkRole('administrator')) {
+                    echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'\">X</button>";
+                }
                 echo "<button class='enter-btn' onclick=\"window.location.href='room_details.php ?room_id=".$row['room_id']."'\">Enter</button>";
                 echo "</div>";
             }

@@ -1,3 +1,5 @@
+<?php require_once 'app/backend/core/Init.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

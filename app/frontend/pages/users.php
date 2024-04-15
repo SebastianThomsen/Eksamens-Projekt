@@ -3,11 +3,28 @@ require_once 'app/backend/auth/user.php';
 require_once 'app/backend/classes/User.php';
 require_once 'app/backend/core/Init.php';
 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "defire";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 $user = new User();
 
 if (isset($_POST['delete'])) {
-    $userId = $_POST['user_id']; // Get the user_id from the form
-    $user->deleteUser($userId); // Delete the user
+    require_once 'app/backend/auth/delete-account.php';
+    $userId = $_POST['user_id'];
+    if (isset($userId)) {
+        $user->deleteUser($userId);
+        Redirect::to('index.php');
+    } else {
+        echo "No user_id provided.";
+    }
 }
 
 $users = $user->getAllUsers();
@@ -19,9 +36,7 @@ $users = $user->getAllUsers();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Table</title>
-    <!-- Link to the CSS file -->
     <link rel="stylesheet" type="text/css" href="usersstyles.css">
-    <!-- Link to Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -43,7 +58,7 @@ $users = $user->getAllUsers();
                 <td><?php echo escape($user->username); ?></td>
                 <td><?php echo escape($user->role); ?></td>
                 <td>
-                    <form action="app/backend/auth/delete-account.php" method="post">
+                    <form action="" method="post">
                         <input type="hidden" name="user_id" value="<?php echo escape($user->id); ?>">
                         <button type="submit" class="delete-btn" data-tooltip="Slet brugerkonto"><i class="bi bi-trash3"></i></button>
                     </form>

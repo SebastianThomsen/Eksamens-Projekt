@@ -75,6 +75,16 @@ CREATE TABLE `schools` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `rooms` (
+  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `student_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,	
@@ -82,14 +92,6 @@ CREATE TABLE `schedule` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `rooms` (
-  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `room_name` varchar(50) NOT NULL,
-  `schedule_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE
-);
 
 
 -- --------------------------------------------------------
@@ -119,8 +121,10 @@ ALTER TABLE `students`
 ALTER TABLE `teachers`
     ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-Alter table `rooms`
-    ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE;  
+ALTER TABLE `rooms`
+    ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+    
 
 -- --------------------------------------------------------
 --
@@ -128,9 +132,9 @@ Alter table `rooms`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'Jesper', '$2y$10$GUgKszEgNey8FtQKhNgnU.fwKtEjFyd4qT4He1rjXPNn5ZQumW7pC', 'Jesper', 'student'),
-(2, 'asdasd', '$2y$10$ec47f881fa06a3adf0fabuFnaSafeEP/3JZjx.6Q4OHU59FOIEVO6', 'asdasd', 'admin'),
-(3, 'dsadsa', '$2y$10$84d639d798f70a86b04a2uw6Lcc/Ry7qAMpO1w9fAhMGeWOTg5eku', 'dsadsa', 'teacher');
+(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator');
+
+UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),

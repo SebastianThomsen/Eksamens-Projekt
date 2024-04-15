@@ -1,6 +1,4 @@
 <?php
-require_once 'app/backend/auth/user.php';
-require_once 'app/backend/classes/User.php';
 require_once 'app/backend/core/Init.php';
 
 $servername = "localhost";
@@ -16,18 +14,17 @@ if ($conn->connect_error) {
 
 $user = new User();
 
-if (isset($_POST['delete'])) {
-    require_once 'app/backend/auth/delete-account.php';
+if(isset($_POST['delete'])) {
     $userId = $_POST['user_id'];
-    if (isset($userId)) {
-        $user->deleteUser($userId);
-        Redirect::to('index.php');
+    $sql = "DELETE FROM users WHERE user_id='$userId'";
+    if ($conn->query($sql) === TRUE) {
+        echo "";
     } else {
         echo "No user_id provided.";
     }
 }
-
 $users = $user->getAllUsers();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -52,19 +49,30 @@ $users = $user->getAllUsers();
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($users as $user): ?>
-            <tr>
-                <td><?php echo escape($user->name); ?></td>
-                <td><?php echo escape($user->username); ?></td>
-                <td><?php echo escape($user->role); ?></td>
-                <td>
-                    <form action="" method="post">
-                        <input type="hidden" name="user_id" value="<?php echo escape($user->id); ?>">
-                        <button type="submit" class="delete-btn" data-tooltip="Slet brugerkonto"><i class="bi bi-trash3"></i></button>
-                    </form>
-                </td>
-            </tr>
-        <?php endforeach; ?>
+    <?php
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT user_id, username, name, usertype FROM users";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $row['name'] . "</td>";
+                echo "<td>" . $row['username'] . "</td>";
+                echo "<td>" . $row['usertype'] . "</td>";
+                echo "<td><form action='users.php' method='post'><input type='hidden' name='user_id' value='" . $row['user_id'] . "'><button type='submit' name='delete' class='btn btn-danger'><i class='bi bi-trash'></i></button></form></td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='4'>No users found.</td></tr>";
+        }
+        $conn->close();
+        ?>
     </tbody>
 </table>
 

@@ -60,6 +60,9 @@ function checkRole($requiredRole) {
                     <a href="delete-account.php" class="btn btn-danger custom-btn custom-btn-danger" aria-label="Slet brugerkonto" title="Slet brugerkonto"> 
                     <i class="bi bi-trash3"></i>
                     </a>
+                    <a href="register.php" class="btn btn-primary custom-btn custom-btn-primary" aria-label="Opret ny bruger" title="Opret ny bruger">
+                    <i class="bi bi-person-plus"></i>
+                    </a>
 <?php endif; ?>
                     </div>
                 </div>

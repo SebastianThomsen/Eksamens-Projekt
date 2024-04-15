@@ -20,10 +20,24 @@
             margin: 0 auto;
         }
         .room {
+            position: relative; /* Add this for positioning the delete button */
             padding: 20px;
             background-color: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .delete-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            cursor: pointer;
         }
         h2 {
             margin-top: 0;
@@ -75,9 +89,20 @@
         $sql = "INSERT INTO rooms (room_name, schedule_id) VALUES ('$roomName', '$selectedClass')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+            echo "";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    // Handle room deletion
+    if(isset($_GET['delete_room'])) {
+        $room_id = $_GET['delete_room'];
+        $sql = "DELETE FROM rooms WHERE room_id='$room_id'";
+        if ($conn->query($sql) === TRUE) {
+            echo "";
+        } else {
+            echo "Error deleting record: " . $conn->error;
         }
     }
 
@@ -126,6 +151,8 @@
                 echo "<div class='room' data-class='" . $row['schedule_id'] . "'>";
                 echo "<h2>" . $row['room_name'] . "</h2>";
                 echo "<p>Class: " . $row['schedule_id'] . "</p>";
+                // Add delete button with room ID as query parameter
+                echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'\">X</button>";
                 echo "</div>";
             }
         } else {
@@ -134,5 +161,16 @@
         $conn->close();
         ?>
     </div>
+
+    <script>
+        // JavaScript code for confirmation before deleting a room
+        document.querySelectorAll('.delete-btn').forEach(item => {
+            item.addEventListener('click', event => {
+                if(!confirm("Are you sure you want to delete this room?")) {
+                    event.preventDefault(); // Prevents the default action (i.e., form submission)
+                }
+            });
+        });
+    </script>
 </body>
 </html>

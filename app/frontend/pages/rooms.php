@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School Subject Rooms</title>
     <style>
-        body {
+       
+       body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
@@ -51,6 +52,7 @@
             border-radius: 4px;
             cursor: pointer;
         }
+   
     </style>
 </head>
 <body>
@@ -89,6 +91,30 @@
     </form>
 
     <div class="container" id="roomContainer">
+        <!-- PHP-koden her -->
+        <?php
+        // For at vise eksisterende rum
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "SELECT room_id, room_name, schedule_id FROM rooms";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<div class='room' data-class='" . $row['schedule_id'] . "'>";
+                echo "<h2>" . $row['room_name'] . "</h2>";
+                echo "<p>Class: " . $row['schedule_id'] . "</p>";
+                echo "</div>";
+            }
+        } else {
+            echo "<p>No Rooms Found</p>";
+        }
+        $conn->close();
+        ?>
     </div>
 
     <script>
@@ -100,6 +126,7 @@
             if (roomName && selectedClass) {
                 const newRoom = document.createElement('div');
                 newRoom.classList.add('room');
+                newRoom.setAttribute('data-class', selectedClass); // Tilføj data-attribut for klassen
                 const heading = document.createElement('h2');
                 heading.textContent = roomName;
                 const paragraph = document.createElement('p');

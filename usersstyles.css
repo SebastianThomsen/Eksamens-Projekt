@@ -2,9 +2,9 @@
 
 /* Style the table */
 table {
-    width: 100%;
+    width: 95%; /* Reduce width to fit within the screen */
+    margin: 20px auto; /* Center the table horizontally and provide some top margin */
     border-collapse: collapse;
-    margin-bottom: 20px;
     margin-left: 5%;
 }
 
@@ -13,12 +13,14 @@ th {
     background-color: #f2f2f2;
     text-align: left;
     padding: 8px;
+    padding-left: 4%;
 }
 
 /* Style table data cells */
 td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
+    padding-left: 4%;
 }
 
 /* Style table rows */
@@ -27,15 +29,44 @@ tr:nth-child(even) {
 }
 
 /* Style delete button */
-input[type="submit"] {
-    background-color: #f44336;
-    color: white;
-    padding: 6px 12px;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
+.delete-btn {
+    background-color: transparent; /* Make background transparent */
+    border: none; /* Remove border */
 }
 
-input[type="submit"]:hover {
-    background-color: #d32f2f;
+/* Style delete button icon */
+.delete-btn i {
+    color: #000000; /* Set icon color */
+    font-size: 1.5rem; /* Adjust icon size */
+}
+
+/* Change icon color on hover */
+.delete-btn:hover i {
+    color: #ff0000;
+}
+
+/* Scale up the button on hover */
+.delete-btn:hover {
+    transform: scale(1.1); /* Scale up by 10% */
+}
+
+.delete-btn::after {
+    content: attr(data-tooltip); /* Display the data-tooltip attribute as content */
+    position: absolute;
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* Show tooltip on hover */
+.delete-btn:hover::after {
+    opacity: 1;
 }

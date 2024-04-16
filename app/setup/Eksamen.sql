@@ -77,13 +77,17 @@ CREATE TABLE `schools` (
 
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,	
+  `name` varchar(50) NOT NULL,
+  `day` varchar(50) NOT NULL,
+  `time_slot` varchar(50) NOT NULL,
+  `event` varchar(50) NOT NULL,	
+  `new_event` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `rooms` (
-  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `room_id` int(11) PRIMARY KEY  NOT NULL AUTO_INCREMENT,
   `room_name` varchar(50) NOT NULL,
   `schedule_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
@@ -132,7 +136,7 @@ ALTER TABLE `students`
 
 ALTER TABLE `teachers`
     ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-    
+
 
 -- --------------------------------------------------------
 --

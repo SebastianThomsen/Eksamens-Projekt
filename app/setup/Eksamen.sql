@@ -100,6 +100,12 @@ CREATE TABLE `folders_rooms` (
   FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE `grades` (
+  `grade_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `subjects` varchar(50) NOT NULL
+);
+
 -- --------------------------------------------------------
 
 --
@@ -110,7 +116,6 @@ ADD COLUMN `user_levels` INT NOT NULL DEFAULT 0;
 
 ALTER TABLE `users`
 ADD COLUMN `role` ENUM('student', 'teacher', 'administrator') NOT NULL DEFAULT 'student';
-
 
 ALTER TABLE `users_sessions`
     ADD CONSTRAINT `users_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -173,3 +178,15 @@ INSERT INTO `folders_rooms` (`folder_id`, `folder_name`, `room_id`) VALUES
 (8, 'Folder 8', 8),
 (9, 'Folder 9', 9),
 (10, 'Folder 10', 10);
+
+INSERT INTO `grades` (`grade_id`, `user_id`, `subjects`) VALUES
+(1, 1, 'Math'),
+(2, 1, 'English'),
+(3, 1, 'Danish'),
+(4, 1, 'History'),
+(5, 1, 'Science'),
+(6, 1, 'PE'),
+(7, 1, 'Music'),
+(8, 1, 'Art'),
+(9, 1, 'Religion'),
+(10, 1, 'Geography');

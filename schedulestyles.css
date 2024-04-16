@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+#container {
+    margin: 0 auto; /* Center indholdet horisontalt */
+    max-width: 80%; /* Begræns bredden af containeren */
+    padding: 20px; /* Tilføj lidt polstring */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed; /* Sætter tabellayout til fast, så cellerne beholder deres størrelse */
+    height: 550px; /* Tilføj en fast højde til skemaet */
+    border-radius: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd; /* Tilføjer en grænse til cellerne */
+}
+
+th {
+    background-color: #000000;
+    font-weight: bold;
+    color: #fff;  
+}
+
+th:nth-child(2) {
+    border-top-left-radius: 20px;
+}
+
+th:last-child {
+    border-top-right-radius: 20px;
+}
+
+td {
+    background-color: #fff;
+    min-height: 50px; /* Tilføj en minimumshøjde til cellerne */
+}
+
+th:first-child,
+td:first-child {
+    display: none;
+}
+
+#subjectList {
+    margin-top: 20px;
+}
+
+#subjectList .subjects {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#subjectList .subject {
+    padding: 8px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+#subjectList ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#subjectList ul li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#subjectList ul li:hover {
+    background-color: #e9ecef;
+}
+
+#footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.time {
+    display: block;
+    font-size: 12px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.blueBox {
+    color: #fff;
+    text-align: left; /* Placer teksten til venstre */
+    padding-left: 10px; /* Tilføj en lille polstring til venstre for teksten */
+    
+}
+
+.blueBox .time {
+    margin-bottom: 5px; /* Tilføj en margen mellem fagets navn og tidsrummet */
+}
+
+td.editable {
+    word-wrap: break-word; /* Tillader ord at bryde, hvis de er for lange */
+}
+
+#toggleSubjects i {
+    font-size: 2em; /* Ændr størrelsen efter behov */
+}
+

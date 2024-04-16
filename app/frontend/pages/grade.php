@@ -100,26 +100,68 @@ if(!checkRole('administrator')) {
         die("Connection failed: " . $conn->connect_error);
     }
     ?>
+    <form method="post">
+        <select name="subject">
+            <?php
+            $sql = "SELECT subjects FROM grades";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+                    echo "<option value='" . $row['subjects'] . "'>" . $row['subjects'] . "</option>";
+                }
+            } else { 
+                echo "0 results";
+            }
+            ?>  
+        </select>
+        <select name="grade">
+            <option value="-3">-3</option>
+            <option value="00">00</option>
+            <option value="02">02</option>
+            <option value="4">4</option>
+            <option value="7">7</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+        </select>
+        <input type="submit" value="Submit Grade">
+        
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $subject = $_POST['subject'];
+        $grade = $_POST['grade'];
+
+        $sql = "UPDATE grades SET gradeNumber = ? WHERE subjects = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("is", $grade, $subject);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            echo "Grade updated successfully";
+        } else {
+            echo "Failed to update grade";
+        }
+    }
+    ?>
+
     <h2>School Subject Rooms</h2>  
     <div class="container">
         <?php
-
-        $sql = "SELECT grade_id, subjects FROM grades";
+        $sql = "SELECT subjects, gradeNumber FROM grades";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $row['subjects'] . "</td>";
-                echo "<td><input type='text' name='grade'></td>";
+                echo "<td>" . $row['gradeNumber'] . "</td>";
                 echo "</tr>";
             }
         } else {
             echo "0 results";
         }
-        echo "</table>";
-        $conn->close();
         ?>
     </div>
+    </form>
 </body>
 </html>

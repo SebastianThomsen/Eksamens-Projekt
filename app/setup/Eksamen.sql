@@ -103,7 +103,8 @@ CREATE TABLE `folders_rooms` (
 CREATE TABLE `grades` (
   `grade_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `subjects` varchar(50) NOT NULL
+  `subjects` varchar(50) NOT NULL,
+  `gradeNumber` int(11) NOT NULL
 );
 
 -- --------------------------------------------------------

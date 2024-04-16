@@ -1,5 +1,10 @@
 <?php
 require_once 'app/backend/core/Init.php';
+require_once 'app/backend/auth/checkrole.php';
+
+if(!checkRole('administrator')) {
+    Redirect::to('index.php');
+}
 ?>
 
 <!DOCTYPE html>

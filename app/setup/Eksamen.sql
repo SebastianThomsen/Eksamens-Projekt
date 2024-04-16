@@ -139,9 +139,12 @@ ALTER TABLE `teachers`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator');
+(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator'),
+(2, 'Test', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test', 'student'),
+(3, 'Test2', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test2', 'teacher');
 
 UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
+UPDATE users SET role = 'teacher' WHERE username = 'Test2';
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),

@@ -50,9 +50,9 @@ $conn->close();
 </head>
 <body>
     <form id="addRoomForm" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <input type="text" id="roomName" name="roomName" placeholder="Room Name" required>
+        <input type="text" id="roomName" name="roomName" placeholder="Rum navn" required>
         <select id="classSelector" name="classSelector" required>
-            <option value="">Select Class</option>
+            <option value="">Vælg klasse</option>
             <?php
             $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -73,7 +73,7 @@ $conn->close();
             $conn->close();
             ?>
         </select>
-        <input type="submit" value="Add Room">
+        <input type="submit" value="Tilføj rum">
     </form>
 
     <div class="container" id="roomContainer">

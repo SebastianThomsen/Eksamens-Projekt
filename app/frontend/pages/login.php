@@ -20,7 +20,6 @@
             <input type="password" class="form-control" id="password" placeholder="Adgangskode" name="password" required>
           </div>
           <input type="submit" value="Log Ind">
-          <a href="register.php"><input type="button" value="Registrer"></a> 
           <div class="form-group form-check">
             <label for="remember">
               <input type="checkbox" name="remember" id="remember">Husk mig

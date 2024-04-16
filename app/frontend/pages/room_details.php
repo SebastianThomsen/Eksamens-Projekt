@@ -105,7 +105,20 @@
             echo "<div class='container'>";
             echo "<h2>" . $row['room_name'] . "</h2>";
             echo "<p>Class: " . $row['schedule_id'] . "</p>";
-            // You can display additional room details here if needed
+            
+            // Fetch folders associated with the room
+            $sql = "SELECT folder_id, folder_name FROM folders_rooms";
+            $result = $conn->query($sql);
+            
+            if ($result->num_rows > 0) {
+                echo "<h3>Folders:</h3>";
+                while ($row = $result->fetch_assoc()) {
+                    echo "<p>Folder ID: " . $row['folder_id'] . ", Folder Name: " . $row['folder_name'] . "</p>";
+                }
+            } else {
+                echo "<p>No folders found for this room</p>";
+            }
+
             echo "</div>";
         } else {
             echo "<p>Room not found</p>";

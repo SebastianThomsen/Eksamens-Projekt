@@ -147,6 +147,10 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALU
 UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
 UPDATE users SET role = 'teacher' WHERE username = 'Test2';
 
+SELECT users.user_id, users.name, grades.subjects
+FROM users
+JOIN grades ON users.user_id = grades.user_id;
+
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),
 (2, 'Klasse 2'),

@@ -19,6 +19,12 @@
                     <a class="nav-link" href="forum.php">
                         <i class="bi bi-folder2"></i>
                     </a>
+                    <a class="nav-link" href="rooms.php">
+                        <i class="bi bi-door-open"></i>
+                    </a>
+                    <a class="nav-link" href="calendar.php">
+                        <i class="bi bi-calendar2-week"></i>
+                    </a>
                     <!-- Profile icon without dropdown indicator -->
                     <div class="dropdown">
                         <i class="bi bi-person profile-icon" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>

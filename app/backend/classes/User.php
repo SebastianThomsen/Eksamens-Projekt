@@ -177,27 +177,6 @@ class User
     {
         return $this->_isLoggedIn;
     }
-
-    public function deleteMe()
-    {
-        if ($this->isLoggedIn())
-        {
-            $id = $this->data()->user_id;
-        }
-    
-        if (!$this->_db->delete('users', array('user_id', '=', $id)))
-        {
-            throw new Exception('Unable to update the user.');
-        }
-    }
-
-    public function deleteUser($userId)
-    {
-        if (!$this->_db->delete('users', array('user_id', '=', $userId)))
-        {
-            throw new Exception('Unable to delete the user.');
-        }
-    }
     
     public function validateRole($role) {
         $validRoles = ['admininstrator', 'teacher', 'student'];

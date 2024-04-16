@@ -75,16 +75,6 @@ CREATE TABLE `schools` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `rooms` (
-  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `teacher_id` int(11) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `subject` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,	
@@ -92,7 +82,23 @@ CREATE TABLE `schedule` (
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `rooms` (
+  `room_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `room_name` varchar(50) NOT NULL,
+  `schedule_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
+CREATE TABLE `folders_rooms` (
+  `folder_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `folder_name` varchar(50) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
 
 -- --------------------------------------------------------
 
@@ -120,10 +126,6 @@ ALTER TABLE `students`
 
 ALTER TABLE `teachers`
     ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `rooms`
-    ADD CONSTRAINT `rooms_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `rooms_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
     
 
 -- --------------------------------------------------------
@@ -147,3 +149,27 @@ INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (8, 'Klasse 8'),
 (9, 'Klasse 9'),
 (10, 'Klasse 10');
+
+INSERT INTO `rooms` (`room_id`, `room_name`, `schedule_id`) VALUES
+(1, 'Room 1', 1),
+(2, 'Room 2', 2),
+(3, 'Room 3', 3),
+(4, 'Room 4', 4),
+(5, 'Room 5', 5),
+(6, 'Room 6', 6),
+(7, 'Room 7', 7),
+(8, 'Room 8', 8),
+(9, 'Room 9', 9),
+(10, 'Room 10', 10);
+
+INSERT INTO `folders_rooms` (`folder_id`, `folder_name`, `room_id`) VALUES
+(1, 'Folder 1', 1),
+(2, 'Folder 2', 2),
+(3, 'Folder 3', 3),
+(4, 'Folder 4', 4),
+(5, 'Folder 5', 5),
+(6, 'Folder 6', 6),
+(7, 'Folder 7', 7),
+(8, 'Folder 8', 8),
+(9, 'Folder 9', 9),
+(10, 'Folder 10', 10);

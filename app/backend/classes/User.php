@@ -177,11 +177,6 @@ class User
     {
         return $this->_isLoggedIn;
     }
-
-    public function deleteUser($userId) {
-        $db = DB::getInstance();
-        $result = $db->delete('users', array('id', '=', $userId));
-    }
     
     public function validateRole($role) {
         $validRoles = ['admininstrator', 'teacher', 'student'];

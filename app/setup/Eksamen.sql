@@ -77,7 +77,11 @@ CREATE TABLE `schools` (
 
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,	
+  `name` varchar(50) NOT NULL,
+  `day` varchar(50) NOT NULL,
+  `time_slot` varchar(50) NOT NULL,
+  `event` varchar(50) NOT NULL,
+  `new_event` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -91,6 +95,22 @@ CREATE TABLE `rooms` (
   FOREIGN KEY (`schedule_id`) REFERENCES `schedule` (`schedule_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE `folders_rooms` (
+  `folder_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `folder_name` varchar(50) NOT NULL,
+  `room_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  FOREIGN KEY (`room_id`) REFERENCES `rooms` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE `grades` (
+  `grade_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `subjects` varchar(50) NOT NULL,
+  `gradeNumber` int(11) NOT NULL
+);
+
 -- --------------------------------------------------------
 
 --
@@ -101,7 +121,6 @@ ADD COLUMN `user_levels` INT NOT NULL DEFAULT 0;
 
 ALTER TABLE `users`
 ADD COLUMN `role` ENUM('student', 'teacher', 'administrator') NOT NULL DEFAULT 'student';
-
 
 ALTER TABLE `users_sessions`
     ADD CONSTRAINT `users_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -117,7 +136,7 @@ ALTER TABLE `students`
 
 ALTER TABLE `teachers`
     ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-    
+
 
 -- --------------------------------------------------------
 --
@@ -125,9 +144,22 @@ ALTER TABLE `teachers`
 --
 
 INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator');
+(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator'),
+(2, 'Test', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test', 'student'),
+(3, 'Test2', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test2', 'teacher');
 
 UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
+UPDATE users SET role = 'teacher' WHERE username = 'Test2';
+
+SELECT users.user_id, users.name, grades.subjects
+FROM users
+JOIN grades ON users.user_id = grades.user_id;
+
+INSERT INTO `schedule` (`schedule_id`, `day`, `time_slot`, `event`, `new_event`)
+VALUES
+(11, 'Monday', '08:00-09:00', 'Math', 'Math'),
+(12, 'Monday', '09:00-10:00', 'English', 'English');
+
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),
@@ -152,3 +184,27 @@ INSERT INTO `rooms` (`room_id`, `room_name`, `schedule_id`) VALUES
 (8, 'Room 8', 8),
 (9, 'Room 9', 9),
 (10, 'Room 10', 10);
+
+INSERT INTO `folders_rooms` (`folder_id`, `folder_name`, `room_id`) VALUES
+(1, 'Folder 1', 1),
+(2, 'Folder 2', 2),
+(3, 'Folder 3', 3),
+(4, 'Folder 4', 4),
+(5, 'Folder 5', 5),
+(6, 'Folder 6', 6),
+(7, 'Folder 7', 7),
+(8, 'Folder 8', 8),
+(9, 'Folder 9', 9),
+(10, 'Folder 10', 10);
+
+INSERT INTO `grades` (`grade_id`, `user_id`, `subjects`) VALUES
+(1, 1, 'Math'),
+(2, 1, 'English'),
+(3, 1, 'Danish'),
+(4, 1, 'History'),
+(5, 1, 'Science'),
+(6, 1, 'PE'),
+(7, 1, 'Music'),
+(8, 1, 'Art'),
+(9, 1, 'Religion'),
+(10, 1, 'Geography');

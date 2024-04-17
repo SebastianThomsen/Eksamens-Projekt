@@ -1,4 +1,4 @@
-<?php require_once 'app/backend/auth/checkrole.php';
+<?php require_once 'app/backend/core/init.php';
 ?>
 
 <!DOCTYPE html> 
@@ -125,6 +125,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
+<?php
+require_once 'app/backend/core/Init.php';
+require_once 'app/backend/auth/connection.php';
+require_once 'app/backend/auth/checkrole.php';
+require_once 'app/backend/auth/rooms.php';
+require_once 'app/backend/auth/connect.php';
+?>
+
+<div class="container" id="roomContainer">
+<?php require_once 'app/backend/auth/showRooms.php'; ?>
+</div>
 
 </body> 
 </html> 

@@ -1,4 +1,10 @@
-<?php require_once 'app/backend/core/Init.php'; ?>
+<?php 
+require_once 'app/backend/core/Init.php'; 
+require_once 'app/backend/auth/connection.php';
+require_once 'app/backend/auth/checkrole.php';
+require_once 'app/backend/auth/rooms.php';
+require_once 'app/backend/auth/connect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

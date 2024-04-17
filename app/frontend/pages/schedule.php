@@ -67,10 +67,32 @@ $conn->close();
 
 <?php if (checkRole('administrator')): ?>
 <form id="updateForm" action="" method="post" style="display: none;"> 
-    <input type="text" name="day" placeholder="Dag"> 
-    <input type="text" name="time_slot" placeholder="Klokkeslet"> 
-    <input type="text" name="new_event" placeholder="Fag"> 
-    <input type="submit" value="Opdater Fag" class="btn btn-primary mt-3"> 
+    <select name="day" placeholder="Day"> 
+        <option value="Mandag">Mandag</option> 
+        <option value="Tirsdag">Tirsdag</option> 
+        <option value="Onsdag">Onsdag</option> 
+        <option value="Torsdag">Torsdag</option> 
+        <option value="Fredag">Fredag</option>
+    </select>
+    <select name="time_slot" placeholder="Time Slot"> 
+        <option value="08:10 - 09:10">08:10 - 09:10</option> 
+        <option value="09:10 - 10:10">09:10 - 10:10</option> 
+        <option value="10:20 - 11:20">10:20 - 11:20</option> 
+        <option value="11:50 - 12:50">11:50 - 12:50</option> 
+        <option value="13:00 - 14:00">13:00 - 14:00</option> 
+        <option value="14:00 - 15:00">14:00 - 15:00</option> 
+        <option value="15:00 - 16:00">15:00 - 16:00</option>
+    </select>
+    <select name="new_event" placeholder="New Event"> 
+        <option value="Math">Math</option>
+        <option value="English">English</option>
+        <option value="Science">Science</option>
+        <option value="History">History</option>
+        <option value="Gym">Gym</option>
+        <option value="Lunch">Lunch</option>
+        <option value="Free Period">Free Period</option>
+    </select>
+    <input type="submit" value="Update Event" class="btn btn-primary mt-3"> 
 </form> 
 <?php endif; ?>
 
@@ -127,24 +149,3 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body> 
 </html> 
-
-<?php 
-require_once 'app/backend/core/Init.php'; 
-require_once 'app/backend/auth/connection.php';
-require_once 'app/backend/auth/checkrole.php';
-require_once 'app/backend/auth/rooms.php';
-require_once 'app/backend/auth/connect.php';
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="roomstyles.css">
-</head>
-<body>
-    <div class="container" id="roomContainer">
-<?php require_once 'app/backend/auth/showRooms.php'; ?>
-    </div>
-</body>
-</html>

@@ -3,7 +3,7 @@ require_once 'app/backend/core/Init.php';
 require_once 'app/backend/auth/checkrole.php';
 
 if(!checkRole('teacher')) {
-    Redirect::to('index.php');
+    Redirect::to('calendar.php');
 }
 ?>
 

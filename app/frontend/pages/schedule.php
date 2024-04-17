@@ -147,3 +147,25 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body> 
 </html> 
+
+<?php 
+require_once 'app/backend/core/Init.php'; 
+require_once 'app/backend/auth/connection.php';
+require_once 'app/backend/auth/checkrole.php';
+require_once 'app/backend/auth/rooms.php';
+require_once 'app/backend/auth/connect.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="roomstyles.css">
+    <title>School Subject Rooms</title>
+</head>
+<body>
+    <div class="container" id="roomContainer">
+<?php require_once 'app/backend/auth/showRooms.php'; ?>
+    </div>
+</body>
+</html>

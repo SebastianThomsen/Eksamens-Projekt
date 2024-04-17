@@ -19,7 +19,7 @@ body {
     justify-content: center !important; /* Centrerer vandret */
     align-items: center !important; /* Centrerer lodret */
     text-align: center;
-    position: relative; /* Add this for positioning the delete button */
+     position: relative; /* Add this for positioning the delete button */
     padding: 40px;
     background-color: #ffffff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);

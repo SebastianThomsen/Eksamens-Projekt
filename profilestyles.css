@@ -81,3 +81,11 @@
     outline: none; /* Remove blue outline when focused */
     background-color: transparent;
 }
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .toppad {
+        margin-top: 20px;
+    }
+
+}

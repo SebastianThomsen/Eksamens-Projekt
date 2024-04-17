@@ -67,10 +67,10 @@ $conn->close();
 
 <?php if (checkRole('administrator')): ?>
 <form id="updateForm" action="" method="post" style="display: none;"> 
-    <input type="text" name="day" placeholder="Day"> 
-    <input type="text" name="time_slot" placeholder="Time Slot"> 
-    <input type="text" name="new_event" placeholder="New Event"> 
-    <input type="submit" value="Update Event" class="btn btn-primary mt-3"> 
+    <input type="text" name="day" placeholder="Dag"> 
+    <input type="text" name="time_slot" placeholder="Klokkeslet"> 
+    <input type="text" name="new_event" placeholder="Fag"> 
+    <input type="submit" value="Opdater Fag" class="btn btn-primary mt-3"> 
 </form> 
 <?php endif; ?>
 

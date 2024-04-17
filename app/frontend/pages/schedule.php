@@ -1,3 +1,6 @@
+<?php require_once 'app/backend/auth/checkrole.php';
+?>
+
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
@@ -52,13 +55,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $conn->close(); 
  
 ?> 
- 
+
+<?php if (checkRole('administrator')): ?>
 <form action="" method="post"> 
     <input type="text" name="day" placeholder="Day"> 
     <input type="text" name="time_slot" placeholder="Time Slot"> 
     <input type="text" name="new_event" placeholder="New Event"> 
     <input type="submit" value="Update Event"> 
-</form> 
+</form>
+<?php endif; ?>
     <!-- Tidsskema --> 
     <table id="schedule"> 
         <thead> 

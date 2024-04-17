@@ -77,7 +77,11 @@ CREATE TABLE `schools` (
 
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,	
+  `name` varchar(50) NOT NULL,
+  `days` varchar(50) NOT NULL,
+  `time_slot` varchar(50) NOT NULL,
+  `event` varchar(50) NOT NULL,
+  `new_event` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

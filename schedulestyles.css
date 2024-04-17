@@ -43,6 +43,8 @@ form input[type="submit"] {
     border: none; /* Fjern kantlinjen */
     padding: 10px; /* Tilføj indvendig polstring */
     cursor: pointer; /* Tilføj en pegefingermarkør */
+    width: 22.7%;
+    margin-left: 0;
 }
 
 form input[type="submit"]:hover {

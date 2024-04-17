@@ -84,13 +84,11 @@ $conn->close();
         <option value="15:00 - 16:00">15:00 - 16:00</option>
     </select>
     <select name="new_event" placeholder="New Event"> 
-        <option value="Math">Math</option>
-        <option value="English">English</option>
-        <option value="Science">Science</option>
-        <option value="History">History</option>
-        <option value="Gym">Gym</option>
-        <option value="Lunch">Lunch</option>
-        <option value="Free Period">Free Period</option>
+        <option value="Math">Matematik</option>
+        <option value="English">Engelsk</option>
+        <option value="Science">Fysik</option>
+        <option value="History">Idehistorie</option>
+        <option value="Gym">Idræt</option>
     </select>
     <input type="submit" value="Update Event" class="btn btn-primary mt-3"> 
 </form> 

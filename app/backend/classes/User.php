@@ -1,5 +1,5 @@
 <?php
-require_once 'app/backend/classes/Student.php';
+
 
 class User
 {

@@ -1,13 +1,6 @@
 <?php
 require_once 'app/backend/core/Init.php';
-checkRole('administrator');
-function checkRole($requiredRole) {
-    $user = new User();
-    if ($user->data()->role !== $requiredRole) {
-        return false;
-    }
-    return true;
-}
+require_once 'app/backend/auth/checkrole.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

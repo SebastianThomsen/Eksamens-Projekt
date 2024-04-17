@@ -4,7 +4,8 @@ require_once 'app/backend/auth/connection.php';
 require_once 'app/backend/auth/users.php';
 require_once 'app/backend/auth/checkrole.php';
 
-if(!checkRole('administrator')) {
+$requiredRole = 'administrator';
+if ($user->data()->role !== $requiredRole) {
     Redirect::to('home.php');
 }
 

@@ -7,17 +7,8 @@ define('ADMINISTRATOR', 1);
 define('TEACHER', 2);
 define('STUDENT', 3);
 
-require_once 'app/backend/classes/Administrator.php';
-require_once 'app/backend/classes/Teacher.php';
-require_once 'app/backend/classes/Student.php';
 
 $user = new User();
-
-$admin = new Administrator();
-
-$teacher = new Teacher();
-
-$student = new Student();
 
 $userData = $user->data();
 

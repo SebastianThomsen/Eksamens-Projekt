@@ -4,74 +4,13 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `name` varchar(50) NOT NULL,
   `joined` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `usertype` VARCHAR(50) NOT NULL DEFAULT 'user'
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `users_sessions` (
   `users_session_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `hash` varchar(255) NOT NULL,
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `votes` (
-  `vote_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `value` BIT DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE `administrators` (
-  `administrator_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `teachers` (
-  `teacher_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `navn` varchar(50) NOT NULL,
-  `efternavn` varchar(50) NOT NULL,
-  `fødselsdag` date NOT NULL,
-  `adresse` varchar(50) NOT NULL,
-  `postnummer` int(11) NOT NULL,
-  `telefonnummer` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `fag` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `students` (
-  `student_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
-  `navn` varchar(50) NOT NULL,
-  `efternavn` varchar(50) NOT NULL,
-  `klasse` varchar(50) NOT NULL,
-  `fødselsdag` date NOT NULL,
-  `adresse` varchar(50) NOT NULL,
-  `postnummer` int(11) NOT NULL,
-  `telefonnummer` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `fag` varchar(50) NOT NULL,
-  `årgang` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE `schools` (
-  `school_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `address` varchar(50) NOT NULL,
-  `postnummer` int(11) NOT NULL,
-  `phone_number` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -124,46 +63,31 @@ CREATE TABLE `grades` (
 -- Adding FOREIGN KEY and cascading
 --
 ALTER TABLE `users`
-ADD COLUMN `user_levels` INT NOT NULL DEFAULT 0;
-
-ALTER TABLE `users`
-ADD COLUMN `role` ENUM('student', 'teacher', 'administrator') NOT NULL DEFAULT 'student';
+ADD COLUMN `role` ENUM('student', 'teacher', 'administrator', 'guest') NOT NULL DEFAULT 'student';
 
 ALTER TABLE `users_sessions`
     ADD CONSTRAINT `users_sessions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `votes`
-    ADD CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `administrators`
-    ADD CONSTRAINT `moderators_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `students`
-    ADD CONSTRAINT `students_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `teachers`
-    ADD CONSTRAINT `teachers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
 
 -- --------------------------------------------------------
 --
 -- Inserting initial data
 --
 
-INSERT INTO `users` (`user_id`, `username`, `password`, `name`, `usertype`) VALUES
-(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire', 'administrator'),
-(2, 'Test', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test', 'student'),
-(3, 'Test2', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test2', 'teacher');
+INSERT INTO `users` (`user_id`, `username`, `password`, `name`) VALUES
+(1, 'DeFire@gmail.com', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'DeFire'),
+(2, 'Test', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test'),
+(3, 'Test2', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test2'),
+(4, 'Test3', '$2y$10$Yx92MCLLg34NEk0p5GRTrurvPgGNCxG7KzBLqigS8e2/hUvk8riJe', 'Test3');
 
 UPDATE users SET role = 'administrator' WHERE username = 'DeFire@gmail.com';
 UPDATE users SET role = 'teacher' WHERE username = 'Test2';
+UPDATE users SET role = 'guest' WHERE username = 'Test3';
 
 SELECT users.user_id, users.name, grades.subjects
 FROM users
 JOIN grades ON users.user_id = grades.user_id;
 
-INSERT INTO `scheduleV2` (`schedule_id`, `day`, `time_slot`, `event`, `new_event`)
-VALUES
+INSERT INTO `scheduleV2` (`schedule_id`, `day`, `time_slot`, `event`, `new_event`) VALUES
 (1, 'Monday', '08:00-09:00', 'Math', 'Math'),
 (2, 'Monday', '09:00-10:00', 'English', 'English');
 
@@ -213,4 +137,34 @@ INSERT INTO `grades` (`grade_id`, `user_id`, `subjects`) VALUES
 (7, 1, 'Music'),
 (8, 1, 'Art'),
 (9, 1, 'Religion'),
-(10, 1, 'Geography');
+(10, 1, 'Geography'),
+(11, 2, 'Math'),
+(12, 2, 'English'),
+(13, 2, 'Danish'),
+(14, 2, 'History'),
+(15, 2, 'Science'),
+(16, 2, 'PE'),
+(17, 2, 'Music'),
+(18, 2, 'Art'),
+(19, 2, 'Religion'),
+(20, 2, 'Geography'),
+(21, 3, 'Math'),
+(22, 3, 'English'),
+(23, 3, 'Danish'),
+(24, 3, 'History'),
+(25, 3, 'Science'),
+(26, 3, 'PE'),
+(27, 3, 'Music'),
+(28, 3, 'Art'),
+(29, 3, 'Religion'),
+(30, 3, 'Geography'),
+(31, 4, 'Math'),
+(32, 4, 'English'),
+(33, 4, 'Danish'),
+(34, 4, 'History'),
+(35, 4, 'Science'),
+(36, 4, 'PE'),
+(37, 4, 'Music'),
+(38, 4, 'Art'),
+(39, 4, 'Religion'),
+(40, 4, 'Geography');

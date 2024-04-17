@@ -1,14 +1,11 @@
 <?php
 require_once 'app/backend/core/Init.php';
+require_once 'app/backend/auth/checkrole.php';
 
-checkRole('administrator');
-
-function checkRole($requiredRole) {
-    $user = new User();
+$requiredRole = 'administrator';
     if ($user->data()->role !== $requiredRole) {
-        Redirect::to('profile.php');
+        Redirect::to('home.php');
     }
-}
 ?>
 <div class="container" style="padding-top: 5%; padding-bottom: 5%;">
 <h2>Opdater information</h2>

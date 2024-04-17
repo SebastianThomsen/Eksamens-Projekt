@@ -1,3 +1,12 @@
+<?php 
+require_once 'app/backend/auth/checkrole.php'; 
+
+$requiredRole = 'administrator';
+    if ($user->data()->role !== $requiredRole) {
+      Redirect::to('home.php');
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

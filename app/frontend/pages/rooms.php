@@ -18,13 +18,13 @@ require_once 'app/backend/auth/connect.php';
         <input type="text" id="roomName" name="roomName" placeholder="Rum navn" required>
         <select id="classSelector" name="classSelector" required>
             <option value="">Vælg klasse</option>
-<?php require_once 'app/backend/auth/addRooms.php'; ?>
+
         </select>
         <input type="submit" value="Tilføj rum">
     </form>
 
     <div class="container" id="roomContainer">
-<?php require_once 'app/backend/auth/showRooms.php'; ?>
+<?php require_once 'app/backend/auth/rooms-container.php'; ?>
     </div>
 </body>
 </html>

@@ -78,6 +78,13 @@ CREATE TABLE `schools` (
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `last_updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `scheduleV2` (
+  `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
   `day` varchar(50) NOT NULL,
   `time_slot` varchar(50) NOT NULL,
   `event` varchar(50) NOT NULL,
@@ -155,11 +162,10 @@ SELECT users.user_id, users.name, grades.subjects
 FROM users
 JOIN grades ON users.user_id = grades.user_id;
 
-INSERT INTO `schedule` (`schedule_id`, `day`, `time_slot`, `event`, `new_event`)
+INSERT INTO `scheduleV2` (`schedule_id`, `day`, `time_slot`, `event`, `new_event`)
 VALUES
-(11, 'Monday', '08:00-09:00', 'Math', 'Math'),
-(12, 'Monday', '09:00-10:00', 'English', 'English');
-
+(1, 'Monday', '08:00-09:00', 'Math', 'Math'),
+(2, 'Monday', '09:00-10:00', 'English', 'English');
 
 INSERT INTO `schedule` (`schedule_id`, `name`) VALUES
 (1, 'Klasse 1'),

@@ -1,40 +1,74 @@
-<div class="container" style="margin-top:30px">
-    <div class="row">
-      <div class="col-sm-4">
-        <h2>About Me</h2>
-        <h5>Photo of me:</h5>
-        <div class="fakeimg">Fake Image</div>
-        <p>Some text about me in culpa qui officia deserunt mollit anim..</p>
-        <h3>Some Links</h3>
-        <p>Lorem ipsum dolor sit ame.</p>
-        <ul class="nav nav-pills flex-column">
-          <li class="nav-item">
-            <a class="nav-link active" href="#">Active</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Disabled</a>
-          </li>
-        </ul>
-        <hr class="d-sm-none">
-      </div>
-      <div class="col-sm-8">
-        <h2>TITLE HEADING</h2>
-        <h5>Title description, Dec 7, 2017</h5>
-        <div class="fakeimg">Fake Image</div>
-        <p>Some text..</p>
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-        <br>
-        <h2>TITLE HEADING</h2>
-        <h5>Title description, Sep 2, 2017</h5>
-        <div class="fakeimg">Fake Image</div>
-        <p>Some text..</p>
-        <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
-      </div>
+<?php require_once 'app/backend/core/init.php';
+require_once 'app/backend/auth/scheduleAdd.php';
+?>
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" type="text/css" href="schedulestyles.css">
+    <!-- Tilføj Bootstrap CSS-link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-AyEzDRvZd+qIAF3m8I+g9IfsLxF8aJPOaz+UVFLtd0+ibR4djc/t5qBPO0ES4v7x" crossorigin="anonymous">
+    <!-- Tilføj Bootstrap Icons-link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <title>Weekly Schedule</title> 
+</head> 
+<body> 
+
+<!-- Tidsskema --> 
+<table id="schedule"> 
+    <thead> 
+        <tr> 
+            <th>Time</th> 
+            <th>Mandag</th> 
+            <th>Tirsdag</th> 
+            <th>Onsdag</th> 
+            <th>Torsdag</th> 
+            <th>Fredag</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+<?php 
+require_once 'app/backend/auth/schedule-tbody.php';
+?>
+</tbody> 
+</table>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var form = document.getElementById("updateForm");
+    var showFormButton = document.getElementById("showFormButton");
+
+    showFormButton.addEventListener("click", function() {
+        if (form.style.display === "none") {
+            form.style.display = "block";
+        } else {
+            form.style.display = "none";
+        }
+    });
+});
+</script>
+</body> 
+</html> 
+
+<?php 
+require_once 'app/backend/core/Init.php'; 
+require_once 'app/backend/auth/connection.php';
+require_once 'app/backend/auth/checkrole.php';
+require_once 'app/backend/auth/connect.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="roomstyles.css">
+    <title>School Subject Rooms</title>
+</head>
+<body>
+    <div class="container" id="roomContainer">
+<?php require_once 'app/backend/auth/rooms-container.php'; ?>
     </div>
-  </div>
+</body>
+</html>

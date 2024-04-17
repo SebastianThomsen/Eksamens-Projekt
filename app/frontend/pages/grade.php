@@ -2,7 +2,7 @@
 require_once 'app/backend/core/Init.php';
 require_once 'app/backend/auth/checkrole.php';
 
-if(!checkRole('administrator')) {
+if(!checkRole('teacher')) {
     Redirect::to('index.php');
 }
 ?>

@@ -40,19 +40,13 @@ $events = fetchEvents($conn);
  
 if ($_SERVER["REQUEST_METHOD"] == "POST") { 
     if (isset($_POST['day']) && isset($_POST['time_slot']) && isset($_POST['new_event'])) { 
-        // Update event 
-        $stmt = $conn->prepare("UPDATE schedule SET event = ? WHERE day = ? AND time_slot = ?"); 
-        $a1 = $_POST['new_event'];
-        $a2 = $_POST['day'];
-        $a3 =  $_POST['time_slot'];
-
-        //$stmt->bind_param("sss", $_POST['new_event'], $_POST['day'], $_POST['time_slot']); 
-        $stmt->bind_param("sss", $a1, $a2, $a3); 
-        $stmt->execute(); 
+        // Create event 
+        Database::getInstance()->query 
+        ("INSERT INTO schedule (day, time_slot, event) VALUES ('" . $_POST['day'] . "', '" . $_POST['time_slot'] . "', '" . $_POST['new_event'] . "')");
         echo "Event updated successfully"; 
     } 
 } 
- 
+    
  
 // Close the connection 
 $conn->close(); 
@@ -82,15 +76,6 @@ $conn->close();
 $time_slots = ['08:10 - 09:10', '09:10 - 10:10', '10:20 - 11:20', '11:50 - 12:50', '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00',]; 
 $days = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag']; 
  
-
-// Eksempel på en array af begivenheder 
-$events = [ 
-    'Mandag' => ['08:10 - 09:10' => 'Matematik', '09:10 - 10:10' => 'Matematik', '10:20 - 11:20' => 'Kommunikation og It', '11:50 - 12:50' => 'Kommunikation og It' /* ... */], 
-    'Tirsdag' => ['08:10 - 09:10' => 'Dansk', '09:10 - 10:10' => 'Dansk', '10:20 - 11:20' => 'Dansk', '11:50 - 12:50' => 'Dansk', '13:00 - 14:00' => 'Idræt', '14:00 - 15:00' => 'Idræt' /* ... */], 
-    'Onsdag' => ['08:10 - 09:10' => 'Engelsk', '09:10 - 10:10' => 'Engelsk', '10:20 - 11:20' => 'Teknikfag', '11:50 - 12:50' => 'Teknikfag', '13:00 - 14:00' => 'Teknikfag', '14:00 - 15:00' => 'Teknikfag' /* ... */], 
-    'Torsdag' => ['08:10 - 09:10' => 'Idehistorie', '09:10 - 10:10' => 'Idehistorie', '10:20 - 11:20' => 'Programmering', '11:50 - 12:50' => 'Programmering' /* ... */], 
-    'Fredag' => ['08:10 - 09:10' => 'Kommunikation og It', '09:10 - 10:10' => 'Kommunikation og It', '10:20 - 11:20' => 'Kommunikation og It', '11:50 - 12:50' => 'Kommunikation og It' /* ... */], 
-]; 
  
 foreach ($time_slots as $time_slot) { 
     echo "<tr>"; 
@@ -106,6 +91,9 @@ foreach ($time_slots as $time_slot) {
     echo "</tr>"; 
 } 
  
+$schedule = Database :: getInstance()->query("SELECT * FROM schedule");
+
+
 ?>
  
 </tbody> 

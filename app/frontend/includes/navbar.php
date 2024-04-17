@@ -13,7 +13,7 @@
         <div class="navbar-top">
             <div class="navbar-icons">
                 <?php if ($user->isLoggedIn()) : ?>
-                    <a class="nav-link" href="schedule.php">
+                    <a class="nav-link" href="calendar.php">
                         <i class="bi bi-house"></i>
                     </a>
                     <a class="nav-link" href="forum.php">

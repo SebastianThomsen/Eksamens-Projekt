@@ -1,8 +1,11 @@
+
 table { 
     border-collapse: collapse; 
     width: 85%; 
     margin-left: 10%;
+    
 } 
+
 th, td { 
     border: 1px solid black; 
     padding: 8px; 
@@ -19,4 +22,50 @@ td {
     white-space: nowrap; /* Tilføjet for at forhindre linjeskift */ 
     overflow: hidden; /* Tilføjet for at skjule overskydende tekst */ 
     max-width: 0; /* Tilføjet for at sikre, at teksten ikke gør cellen større */ 
+}
+
+form {
+    margin-left: 10%;
+    margin-right: auto;
+    width: 85%; /* Juster bredden efter behov */
+    padding-bottom: 10px;
+}
+
+form input[type="text"], form input[type="submit"] {
+    display: block;
+    margin: 5px auto; /* Centrer inputfelterne og knappen */
+    width: 90%; /* Juster bredden efter behov */
+}
+
+form input[type="submit"] {
+    background-color: #000000; /* Sort farve */
+    color: white; /* Hvid farve */
+    border: none; /* Fjern kantlinjen */
+    padding: 10px; /* Tilføj indvendig polstring */
+    cursor: pointer; /* Tilføj en pegefingermarkør */
+}
+
+form input[type="submit"]:hover {
+    background-color: #333333; /* Mørkere sort farve */
+}
+
+#showFormButton {
+    margin-left: 10%; /* Tilføj margin til venstre for at rykke knappen ind */
+    background-color: transparent;
+    color: black;
+    border: transparent;
+    font-size: 28px;
+    transition: transform 0.2s ease-in-out; /* Tilføj en overgangseffekt for glidende ændringer */
+    outline: none !important; /* Fjern knappens fokusramme */
+
+}
+
+#showFormButton:hover {
+    transform: scale(1.1); /* Skaler knappen 110% når musen holdes over den */
+    border: transparent;
+}
+
+#showFormButton:active {
+    outline: none !important;
+    border: transparent !important;
 }

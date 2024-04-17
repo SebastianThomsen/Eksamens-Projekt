@@ -1,30 +1,9 @@
 <?php
 require_once 'app/backend/core/Init.php';
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "defire";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+require_once 'app/backend/auth/connection.php';
+require_once 'app/backend/auth/users.php';
 
 $user = new User();
-
-if(isset($_POST['delete'])) {
-    $userId = $_POST['user_id'];
-    $sql = "DELETE FROM users WHERE user_id='$userId'";
-    if ($conn->query($sql) === TRUE) {
-        echo "";
-    } else {
-        echo "No user_id provided.";
-    }
-}
-$users = $user->getAllUsers();
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +29,7 @@ $conn->close();
     </thead>
     <tbody>
     <?php
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+require_once 'app/backend/auth/connection.php';
 
         $sql = "SELECT user_id, username, name, usertype FROM users";
         $result = $conn->query($sql);

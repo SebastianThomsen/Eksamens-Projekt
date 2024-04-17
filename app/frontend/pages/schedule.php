@@ -3,30 +3,8 @@
 <head> 
     <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" type="text/css" href="schedulestyles.css">
     <title>Weekly Schedule</title> 
-    <style> 
-        table { 
-            border-collapse: collapse; 
-            width: 100%; 
-            margin-right: 100px; 
-        } 
-        th, td { 
-            border: 1px solid black; 
-            padding: 8px; 
-            text-align: center; 
-        } 
-        th { 
-            background-color: #f2f2f2; 
-        } 
-        td { 
-            border: 1px solid black; 
-            padding: 8px; 
-            text-align: center; 
-            white-space: nowrap; /* Tilføjet for at forhindre linjeskift */ 
-            overflow: hidden; /* Tilføjet for at skjule overskydende tekst */ 
-            max-width: 0; /* Tilføjet for at sikre, at teksten ikke gør cellen større */ 
-        } 
-    </style> 
 </head> 
 <body> 
  

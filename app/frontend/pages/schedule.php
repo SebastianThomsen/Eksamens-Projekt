@@ -64,6 +64,7 @@ $conn->close();
     <input type="submit" value="Update Event"> 
 </form>
 <?php endif; ?>
+
     <!-- Tidsskema --> 
     <table id="schedule"> 
         <thead> 
@@ -95,9 +96,6 @@ foreach ($time_slots as $time_slot) {
     } 
     echo "</tr>"; 
 } 
- 
-$schedule = Database :: getInstance()->query("SELECT * FROM schedule");
-
 
 ?>
  

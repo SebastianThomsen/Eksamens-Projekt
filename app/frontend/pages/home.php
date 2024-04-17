@@ -68,7 +68,7 @@ require_once 'app/backend/auth/connect.php';
 </head>
 <body>
     <div class="container" id="roomContainer">
-<?php require_once 'app/backend/auth/rooms-container.php'; ?>
+<?php require_once 'app/backend/auth/home-rooms.php'; ?>
     </div>
 </body>
 </html>

@@ -78,7 +78,7 @@ CREATE TABLE `schools` (
 CREATE TABLE `schedule` (
   `schedule_id` int(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `days` varchar(50) NOT NULL,
+  `day` varchar(50) NOT NULL,
   `time_slot` varchar(50) NOT NULL,
   `event` varchar(50) NOT NULL,
   `new_event` varchar(50) NOT NULL,

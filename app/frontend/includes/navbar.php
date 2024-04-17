@@ -16,7 +16,7 @@
                     <a class="nav-link" href="calendar.php">
                         <i class="bi bi-house"></i>
                     </a>
-                    <a class="nav-link" href="forum.php">
+                    <a class="nav-link" href="grade.php">
                         <i class="bi bi-folder2"></i>
                     </a>
                     <a class="nav-link" href="rooms.php">

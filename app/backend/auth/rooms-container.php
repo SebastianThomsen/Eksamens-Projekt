@@ -10,10 +10,10 @@
 
        if ($result->num_rows > 0) {
            while($row = $result->fetch_assoc()) {
-               echo "<a href='room_details.php?room_id=".$row['room_id']."' class='room' data-class='" . $row['schedule_id'] . "'>";
-               echo "<div>"; // Open div here
-               echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'\">X</button>";
-               echo "<h2>" . $row['room_name'] . "</h2>";
+            echo "<a href='room_details.php?room_id=".$row['room_id']."' class='room' data-class='" . $row['schedule_id'] . "'>";
+            echo "<div>"; // Open div here
+            echo "<button class='delete-btn' onclick=\"window.location.href='$_SERVER[PHP_SELF]?delete_room=".$row['room_id']."'; event.stopPropagation(); return false;\">X</button>";
+            echo "<h2>" . $row['room_name'] . "</h2>";
                
                // Fetching class name from database
                $classConn = new mysqli($servername, $username, $password, $dbname);

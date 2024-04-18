@@ -46,7 +46,7 @@ require_once 'app/backend/auth/scheduleAdd.php';
         <option value="History">Idehistorie</option>
         <option value="Gym">Idræt</option>
     </select>
-    <input type="submit" value="Update Event" class="btn btn-primary mt-3"> 
+    <input type="submit" value="Opdater skema" class="btn btn-primary mt-3"> 
 </form> 
 <?php endif; ?>
 

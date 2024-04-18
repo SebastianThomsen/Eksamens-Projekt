@@ -82,10 +82,25 @@
     background-color: transparent;
 }
 
-/* Media Queries */
-@media (max-width: 768px) {
-    .toppad {
-        margin-top: 20px;
+@media only screen and (max-width: 992px) {
+    .panel-info {
+       width: 80%;
+       margin-left: 90px;
     }
-
 }
+
+
+@media only screen and (min-width: 993px) {
+    .panel-info {
+        width: 100%;
+        margin-left: 90px;
+     }
+   
+  }
+
+@media only screen and (min-width: 1200px) {
+    .panel-info {
+        width: 100%;
+        margin-left: 90px;
+     }
+  }

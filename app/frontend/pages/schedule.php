@@ -40,11 +40,11 @@ require_once 'app/backend/auth/scheduleAdd.php';
         <option value="15:00 - 16:00">15:00 - 16:00</option>
     </select>
     <select name="new_event" placeholder="New Event"> 
-        <option value="Math">Matematik</option>
-        <option value="English">Engelsk</option>
-        <option value="Science">Fysik</option>
-        <option value="History">Idehistorie</option>
-        <option value="Gym">Idræt</option>
+        <option value="Matematik">Matematik</option>
+        <option value="Engelsk">Engelsk</option>
+        <option value="Fysik">Fysik</option>
+        <option value="Idehistorie">Idehistorie</option>
+        <option value="Idræt">Idræt</option>
     </select>
     <input type="submit" value="Opdater skema" class="btn btn-primary mt-3"> 
 </form> 

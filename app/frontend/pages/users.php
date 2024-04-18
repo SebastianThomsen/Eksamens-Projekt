@@ -30,6 +30,7 @@ $user = new User();
             <th>Navn</th>
             <th>Email</th>
             <th>Rolle</th>
+            <th></th>
         </tr>
     </thead>
 

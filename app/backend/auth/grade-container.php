@@ -1,8 +1,16 @@
 <?php
 require_once 'app/backend/core/Init.php';
+$user = new User();
+$userId = $user->data()->user_id;
+$role = $user->data()->role;
 
-$sql = "SELECT grades.subjects, grades.gradeNumber, users.name FROM grades INNER JOIN users ON grades.user_id = users.user_id";
-$result = $conn->query($sql);
+if ($role == 'student') {
+    $sql = "SELECT grades.subjects, grades.gradeNumber, users.name FROM grades INNER JOIN users ON grades.user_id = users.user_id WHERE users.user_id = $userId";
+} else {
+    $sql = "SELECT grades.subjects, grades.gradeNumber, users.name FROM grades INNER JOIN users ON grades.user_id = users.user_id";
+}
+
+        $result = $conn->query($sql);
 
 $currentStudent = null; // Variable to keep track of the current student being processed
 

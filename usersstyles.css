@@ -70,3 +70,11 @@ tr:nth-child(even) {
 .delete-btn:hover::after {
     opacity: 1;
 }
+
+@media only screen and (max-width: 992px) {
+    table {
+        width: 85%; /* Make the table full width on smaller screens */
+        margin-left: 80px;
+    }
+
+}

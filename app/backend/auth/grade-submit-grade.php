@@ -14,7 +14,7 @@
 
 <select name="subject"> 
     <?php
-        $sql = "SELECT subjects FROM grades";
+        $sql = "SELECT DISTINCT subjects FROM grades";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {

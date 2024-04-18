@@ -3,7 +3,7 @@
     background-color: #000000; /* Dark grey */
     display: flex;
     flex-direction: column;
-    height: 100vh; /* 100% viewport height */
+    height: 100%; /* 100% viewport height */
     width: 80px; /* Adjust width as needed */
     position: fixed; /* Keeps navbar fixed */
     top: 0;

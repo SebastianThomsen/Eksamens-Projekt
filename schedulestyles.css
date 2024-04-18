@@ -71,3 +71,29 @@ form input[type="submit"]:hover {
     outline: none !important;
     border: transparent !important;
 }
+
+@media only screen and (max-width: 992px) {
+    table {
+        width: 100%; 
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    form {
+        width: 50%; 
+        margin-left: 30%;
+    }
+
+    form input[type="text"],
+    form input[type="submit"],
+    select {
+        width: 100%; 
+        margin: 5px 0; 
+    }
+
+    #showFormButton {
+        margin-left: 50%;
+    }
+
+}
+

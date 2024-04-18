@@ -15,6 +15,7 @@ body {
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
 }
 
 h2 {
@@ -61,3 +62,50 @@ input[type="submit"] {
     text-align: center;
 }
 
+@media only screen and (max-width: 600px) {
+    .container {
+        max-width: 450px;
+        margin-left: 70px;
+    }
+
+    .student-name {
+        padding: 3px; 
+        border-radius: 20px; /* Afrundede hjørner */
+        display: inline-block; 
+        width: 265px;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        max-width: 450px;
+        margin-left: 70px;
+    }
+
+    .student-name {
+        padding: 3px; 
+        border-radius: 20px; /* Afrundede hjørner */
+        display: inline-block; 
+        width: 375px;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .container {
+        max-width: 750px;
+    }
+  }
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 1000px;
+    }
+  }
+
+@media only screen and (min-width: 1500px) {
+    .container {
+        max-width: 1200px;
+    }
+  }

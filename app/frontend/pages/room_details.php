@@ -22,10 +22,11 @@
         $room_id = $_GET['room_id'];
         
         // Fetch room details from the database based on room_id
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "defire";
+        $servername = "defiregutterpaatur_dk";
+        $username = "mysql57.unoeuro.com";
+        $password = "dFBEwgAbGmnRck9tzx6H";
+        $dbname = "defiregutterpaatur_dk_db";
+        
 
         $conn = new mysqli($servername, $username, $password, $dbname);
 
